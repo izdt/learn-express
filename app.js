@@ -6,3 +6,7 @@ const port = 5000;
 app.listen(port,(err)=>{
     console.log('server listen at ' + port);
 });
+
+app.get('/',(req,res)=>{
+    res.send('Hello world!');
+});
