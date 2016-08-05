@@ -10,3 +10,7 @@ app.listen(port,(err)=>{
 app.get('/',(req,res)=>{
     res.send('Hello world!');
 });
+
+app.post('/',(req,res)=>{
+    res.send('POST recieved!');
+});
