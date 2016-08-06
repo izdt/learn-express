@@ -14,3 +14,9 @@ app.get('/',(req,res)=>{
 app.post('/',(req,res)=>{
     res.send('POST recieved!');
 });
+
+app.all('/secret', (req, res, next)=>{
+	console.log('access secret section');
+	next();
+});
+
