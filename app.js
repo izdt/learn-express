@@ -11,6 +11,10 @@ app.get('/',(req,res)=>{
     res.send('Hello world!');
 });
 
+app.get('/book',(req,res)=>{
+    res.send('Book!');
+});
+
 app.post('/',(req,res)=>{
     res.send('POST recieved!');
 });
