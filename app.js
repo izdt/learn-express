@@ -3,6 +3,11 @@ const express = require('express');
 const app = express();
 const port = 5000;
 
+app.use((req, res, next) => {
+  console.log('Time: ', Date.now());
+  next();
+})
+
 app.listen(port,(err)=>{
     console.log('server listen at ' + port);
 });
@@ -21,6 +26,27 @@ app.get(/.*test$/,(req,res)=>{
 
 app.get('/users/:userId/books/:bookId',(req,res)=>{
     res.send(req.params);
+});
+
+app.get('/:p1.:p2',(req, res, next) => {
+  console.log('the response will be sent by the next function ...');
+  next();
+},(req, res) => {
+  res.send('p1:'+req.params.p1+",p2:"+req.params.p2);
+});
+
+app.route('/api')
+  .get((req, res) => {
+    res.send('Get method');
+  })
+  .post((req, res) => {
+    res.send('Post method');
+  })
+  .put((req, res) => {
+    res.send('Put method');
+  })
+  .delete(() => {
+      res.send('Delete method');
 });
 
 app.post('/',(req,res)=>{
