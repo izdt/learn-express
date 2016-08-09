@@ -15,6 +15,14 @@ app.get('/book',(req,res)=>{
     res.send('Book!');
 });
 
+app.get(/.*test$/,(req,res)=>{
+    res.send('Regex that match /.*test$/');
+});
+
+app.get('/users/:userId/books/:bookId',(req,res)=>{
+    res.send(req.params);
+});
+
 app.post('/',(req,res)=>{
     res.send('POST recieved!');
 });
