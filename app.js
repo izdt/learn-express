@@ -43,9 +43,11 @@ app.route('/api')
     res.send('Post method');
   })
   .put((req, res) => {
+    console.log(req);
+    //res.send(req);
     res.send('Put method');
   })
-  .delete(() => {
+  .delete((req,res) => {
       res.send('Delete method');
 });
 
