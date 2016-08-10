@@ -4,16 +4,24 @@ const app = express();
 const port = 5000;
 
 app.use((req, res, next) => {
-  console.log('Time: ', Date.now());
+  //console.log('Time: ', Date.now());
+  console.log('Time: ',new Date());
   next();
 })
+
+//app.use(express.static('public'));
+app.use('/static', express.static(__dirname + '/public'));
+
+app.set('views', 'views');
+app.set('view engine', 'ejs');
 
 app.listen(port,(err)=>{
     console.log('server listen at ' + port);
 });
 
 app.get('/',(req,res)=>{
-    res.send('Hello world!');
+    res.render('index');
+    //res.send('Hello world!');
 });
 
 app.get('/book',(req,res)=>{
@@ -28,7 +36,7 @@ app.get('/users/:userId/books/:bookId',(req,res)=>{
     res.send(req.params);
 });
 
-app.get('/:p1.:p2',(req, res, next) => {
+app.get('/abc/:p1.:p2',(req, res, next) => {
   console.log('the response will be sent by the next function ...');
   next();
 },(req, res) => {
