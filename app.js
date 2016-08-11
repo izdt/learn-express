@@ -24,6 +24,13 @@ app.get('/',(req,res)=>{
     //res.send('Hello world!');
 });
 
+app.get('/hi',(req,res)=>{
+	res.render('hi',{
+		title:'hello world',
+		content:'render content by ejs'
+	});
+});
+
 app.get('/book',(req,res)=>{
     res.send('Book!');
 });
