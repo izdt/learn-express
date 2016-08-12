@@ -1,5 +1,6 @@
 const express = require('express');
 
+const bodyParser = require('body-parser');
 const app = express();
 const port = 5000;
 
@@ -14,6 +15,7 @@ app.use('/static', express.static(__dirname + '/public'));
 
 app.set('views', 'views');
 app.set('view engine', 'ejs');
+app.use(bodyParser.json());
 
 app.listen(port,(err)=>{
     console.log('server listen at ' + port);
@@ -55,7 +57,8 @@ app.route('/api')
     res.send('Get method');
   })
   .post((req, res) => {
-    res.send('Post method');
+    res.send(req.body);
+    //res.send('Post method');
   })
   .put((req, res) => {
     console.log(req);
@@ -75,3 +78,11 @@ app.all('/secret', (req, res, next)=>{
 	next();
 });
 
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: err // {}
+  });
+});
+module.exports = app;
