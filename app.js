@@ -8,7 +8,7 @@ app.use((req, res, next) => {
   //console.log('Time: ', Date.now());
   console.log('Time: ',new Date());
   next();
-})
+});
 
 //app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/public'));
