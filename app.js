@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
-
+const apiRoutes = require('./routes/api');
 const app = express();
 const port = 5000;
 
@@ -23,6 +23,7 @@ app.listen(port,(err)=>{
 });
 
 app.use('/', routes);
+app.use('/api',apiRoutes);
 
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
