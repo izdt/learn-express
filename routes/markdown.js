@@ -13,6 +13,6 @@ router.get('/:file',(req,res)=>{
         let html = marked.parse(data).replace(/\{([^}]+)\}/g, function(_, name){
             return escapeHtml( '');
         });
-        res.send(html);
+        res.render('markdown',{html});
     });
 });
