@@ -21,6 +21,7 @@
     "body-parser": "^1.15.2",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
+    "marked": "^0.3.6",
     "supervisor": "^0.11.0"
   }
 }
