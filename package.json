@@ -23,5 +23,8 @@
     "express": "^4.14.0",
     "marked": "^0.3.6",
     "supervisor": "^0.11.0"
+  },
+  "devDependencies": {
+    "supertest": "^2.0.0"
   }
 }
