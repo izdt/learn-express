@@ -4,16 +4,15 @@ const request = require('supertest')
 
 describe('first test', () => {
   it('should pass with simple test', (done) => {
-     const app = express();
-     const agent = request.agent(app);
+    let server;
+    beforeEach(function () {
+        server = require('../app');
+    });
     
     it('should save cookies', function(done){
-        agent
+        request(server)
         .get('/')
         .expect('set-cookie', 'cookie=hey; Path=/', done);
     });
-
-
-
   });
 });

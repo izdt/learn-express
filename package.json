@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/supervisor app.js"
+    "start": "node_modules/.bin/supervisor app.js",
+    "test": "node_modules/.bin/mocha test/testApp.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
     "supervisor": "^0.11.0"
   },
   "devDependencies": {
+    "mocha": "^3.0.2",
+    "should": "^11.1.0",
     "supertest": "^2.0.0"
   }
 }
