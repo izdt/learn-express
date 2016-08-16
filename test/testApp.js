@@ -2,17 +2,26 @@ const request = require('supertest')
    , should = require('should')
    , express = require('express');
 
-describe('first test', () => {
-  it('should pass with simple test', (done) => {
-    let server;
-    beforeEach(function () {
-        server = require('../app');
+describe('Simple app test', () => {
+  let server;
+  beforeEach(function () {
+      server = require('../app');
+  });
+
+  it('should return 200 when get root url', (done) => {  
+    request(server)
+    .get('/')
+    .expect(200)
+    .end(function(err, res) {
+        if (err) return done(err);
+        done();
     });
-    
-    it('should save cookies', function(done){
-        request(server)
-        .get('/')
-        .expect('set-cookie', 'cookie=hey; Path=/', done);
-    });
+  });
+
+  it('should return Book! when get /book', (done) => {  
+    request(server)
+    .get('/book')
+    .expect(200)
+    .expect('Book!',done);
   });
 });
