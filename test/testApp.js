@@ -25,7 +25,15 @@ describe('Simple app test', () => {
     .expect('Book!',done);
   });
 
-  it('should handle redirects', function(done) {
+  it('should assert content-type', (done) => {
+    request(server)
+    .get('/')
+    .expect('Content-Type', 'text/html; charset=utf-8')
+    .expect('Content-Length', '144')
+    .end(done);
+  });
+
+  it('should handle redirects', (done)=> {
     request(server)
     .get('/toBook')
     .redirects(1)
@@ -35,5 +43,6 @@ describe('Simple app test', () => {
       res.text.should.be.equal('Book!');
       done();
     });
+
   });
 });
