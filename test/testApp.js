@@ -24,4 +24,16 @@ describe('Simple app test', () => {
     .expect(200)
     .expect('Book!',done);
   });
+
+  it('should handle redirects', function(done) {
+    request(server)
+    .get('/toBook')
+    .redirects(1)
+    .end(function (err, res) {
+      should.exist(res);
+      res.status.should.be.equal(200);
+      res.text.should.be.equal('Book!');
+      done();
+    });
+  });
 });

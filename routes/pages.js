@@ -7,6 +7,10 @@ router.get('/',(req,res)=>{
     //res.send('Hello world!');
 });
 
+router.get('/toBook', function(req, res) {
+  res.redirect('/book');
+});
+
 router.get('/hi',(req,res)=>{
 	res.render('hi',{
 		title:'hello world',
