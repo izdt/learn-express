@@ -24,6 +24,7 @@ app.listen(port,(err)=>{
 app.use('/', routes.pages);
 app.use('/api',routes.api);
 app.use('/doc',routes.markdown);
+app.use('/app',routes.app);
 
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
