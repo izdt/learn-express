@@ -6,6 +6,11 @@ module.exports = router;
 const callback = (res)=>{
     console.log(res);
 };
+
+router.get('/',(req,res)=>{
+    res.render('user/index',{title:'user',user:{}});
+});
+
 router.get('/testdb',(req,res)=>{
     dblib.connect()
     .then((conn)=>{
