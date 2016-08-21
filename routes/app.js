@@ -8,8 +8,24 @@ const callback = (res)=>{
 };
 
 router.get('/',(req,res)=>{
-    res.render('user/index',{title:'user',user:{}});
+    dblib.connect()
+    .then((conn)=>{
+       return dblib.queryAll('test',conn);
+    })
+    .then((result)=>{
+       res.render('user/index', Object.assign({title:'List of Users'},{users:result}));
+    })
+    .catch((error)=>{
+        res.send(error);
+    });
+    
 });
+
+router.get('/user',(req,res)=>{
+    res.render('user/edit',{title:'user',user:{}});
+});
+
+router.get('/user/:id',(req,res)=>{});
 
 router.get('/testdb',(req,res)=>{
     dblib.connect()
