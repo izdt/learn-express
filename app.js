@@ -17,16 +17,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(port,(err)=>{
-    console.log('server listen at ' + port);
-});
-
 app.use('/', routes.pages);
 app.use('/api',routes.api);
 app.use('/doc',routes.markdown);
 app.use('/app',routes.app);
 
-app.use(function(err, req, res, next) {
+app.listen(port,(err)=>{
+    console.log('server listen at ' + port);
+});
+
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

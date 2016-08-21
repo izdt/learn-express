@@ -7,14 +7,30 @@ const callback = (res)=>{
     console.log(res);
 };
 router.get('/testdb',(req,res)=>{
-    dblib.connect().then((conn)=>{
-        dblib.insert('test',{name:'hello',age:12,gender:'M'},conn).then((response)=>{
-        console.log(response);
-        });
-    }).error((error)=>{
+    dblib.connect()
+    .then((conn)=>{
+        return dblib.insert('test',{name:'hello',age:12,gender:'M'},conn);
+    })
+    .then((response)=>{
+        res.send(response);
+    })
+    .catch((error)=>{
         console.log(error);
+        res.send(error);
     });
     //dblib.testConnect(callback);
-    res.send('Hello Api from ' + req.params.id);
+    //res.send('Hello Api from ' + req.params.id);
 });
-
+router.get('/showData',(req,res)=>{
+    dblib.connect()
+    .then((conn)=>{
+       return dblib.queryAll('test',conn);
+    })
+    .then((result)=>{
+        res.send(JSON.stringify(result, null, 2));
+        //res.send(result);
+    })
+    .catch((error)=>{
+        res.send(error);
+    });
+});
