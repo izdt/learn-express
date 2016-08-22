@@ -38,6 +38,19 @@ router.get('/user/:id',(req,res)=>{
     });
 });
 
+router.get('/user/name/:name',(req,res)=>{
+    dblib.connect()
+    .then((conn)=>{
+        return dblib.filter('test',{name : req.params.name},conn);
+    })
+    .then((users)=>{
+        res.send(users);
+    })
+    .catch((e)=>{
+        console.log("ERROR"+e);
+        res.send(e);
+    });
+});
 router.get('/testdb',(req,res)=>{
     dblib.connect()
     .then((conn)=>{
