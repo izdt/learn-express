@@ -25,7 +25,18 @@ router.get('/user',(req,res)=>{
     res.render('user/edit',{title:'user',user:{}});
 });
 
-router.get('/user/:id',(req,res)=>{});
+router.get('/user/:id',(req,res)=>{
+    dblib.connect()
+    .then((conn)=>{
+        return dblib.getById('test',req.params.id,conn);
+    })
+    .then((user)=>{
+        res.send(user);
+    })
+    .catch((e)=>{
+        res.send(e);
+    });
+});
 
 router.get('/testdb',(req,res)=>{
     dblib.connect()
