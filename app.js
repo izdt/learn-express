@@ -7,6 +7,7 @@ const port = 5000;
 //app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/public'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', 'views');
 app.set('view engine', 'ejs');

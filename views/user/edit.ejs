@@ -1,7 +1,8 @@
 <% include ../share/header.ejs %>
-<form action="">
+<form action="create" method="POST">
     <input type="text" name="name" value= <%=user.name %> >
     <input type="text" name="birthday" value= <%=user.birthday %>>
     <input type="text" name="gender" value= <%=user.gender %> >
+    <button type="submit">Submit</button>
 </form>
 <% include ../share/footer.ejs %>

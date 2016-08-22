@@ -51,6 +51,9 @@ router.get('/user/name/:name',(req,res)=>{
         res.send(e);
     });
 });
+router.post('/create',(req,res)=>{
+    res.send(req.body);
+});
 router.get('/testdb',(req,res)=>{
     dblib.connect()
     .then((conn)=>{
