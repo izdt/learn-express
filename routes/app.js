@@ -38,6 +38,19 @@ router.get('/user/:id',(req,res)=>{
     });
 });
 
+router.get('/user/:id/edit',(req,res)=>{
+    dblib.connect()
+    .then((conn)=>{
+        return dblib.getById('test',req.params.id,conn);
+    })
+    .then((user)=>{
+        res.render('user/edit',{title:'user',user:user});
+    })
+    .catch((e)=>{
+        res.send(e);
+    });
+});
+
 router.get('/user/name/:name',(req,res)=>{
     dblib.connect()
     .then((conn)=>{
@@ -51,13 +64,14 @@ router.get('/user/name/:name',(req,res)=>{
         res.send(e);
     });
 });
-router.post('/create',(req,res)=>{
+router.post(/.*create$/,(req,res)=>{
     dblib.connect()
     .then((conn)=>{
         return dblib.insert('test',req.body,conn);
     })
     .then((response)=>{
-        res.send(response);
+        res.redirect('/app');
+        //res.send(response);
     })
     .catch((error)=>{
         console.log(error);
