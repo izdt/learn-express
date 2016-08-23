@@ -52,7 +52,17 @@ router.get('/user/name/:name',(req,res)=>{
     });
 });
 router.post('/create',(req,res)=>{
-    res.send(req.body);
+    dblib.connect()
+    .then((conn)=>{
+        return dblib.insert('test',req.body,conn);
+    })
+    .then((response)=>{
+        res.send(response);
+    })
+    .catch((error)=>{
+        console.log(error);
+        res.send(error);
+    });
 });
 router.get('/testdb',(req,res)=>{
     dblib.connect()
