@@ -16,6 +16,7 @@ router.get('/',(req,res)=>{
        res.render('user/index', Object.assign({title:'List of Users'},{users:result}));
     })
     .catch((error)=>{
+        res.status(error.status || 500);
         res.send(error);
     });
     

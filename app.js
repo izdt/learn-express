@@ -2,13 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const app = express();
+const logger = require('morgan');
 const port = 5000;
 
 //app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(logger('dev'));
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
