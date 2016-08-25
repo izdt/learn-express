@@ -1,0 +1,12 @@
+<% include ./share/header.ejs %>
+<script src="/static/scripts/socket.io.js"></script>
+<script>
+    const socket = io("http://localhost:5000");
+    socket.on('connect',()=>{
+        console.log("Connected!")
+    });
+    socket.on('event',()=>{});
+    socket.on('disconnect',()=>{});
+</script>
+
+<% include ./share/footer.ejs %>

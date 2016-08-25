@@ -3,7 +3,13 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const app = express();
 const logger = require('morgan');
+const socketio = require('socket.io');
 const port = 5000;
+
+const server = app.listen(port,(err)=>{
+    console.log('server listen at ' + port);
+});
+const io = socketio(server);
 
 //app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/public'));
@@ -23,16 +29,21 @@ app.use('/', routes.pages);
 app.use('/api',routes.api);
 app.use('/doc',routes.markdown);
 app.use('/app',routes.app);
-
-app.listen(port,(err)=>{
-    console.log('server listen at ' + port);
-});
+app.use('/io',routes.io);
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
     error: err // {}
+  });
+});
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+ 
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
   });
 });
 

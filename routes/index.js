@@ -1,10 +1,12 @@
-let pages = require('./pages');
-let api = require('./api');
-let markdown = require('./markdown');
-let app = require('./app');
+const pages = require('./pages');
+const api = require('./api');
+const markdown = require('./markdown');
+const app = require('./app');
+const io = require('./io');
 module.exports = {
   pages,
   api,
   markdown,
-  app
+  app,
+  io
 };
