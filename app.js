@@ -4,6 +4,7 @@ const routes = require('./routes');
 const app = express();
 const logger = require('morgan');
 const socketio = require('socket.io');
+const dblib = require('./lib/dblib');
 const port = 5000;
 
 const server = app.listen(port,(err)=>{
@@ -45,6 +46,13 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
   socket.on('chat message', (msg)=>{
+    dblib.connect()
+    .then((conn)=>{
+      return dblib.insert('chat',{date:(new Date()), message:msg},conn);
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
     io.emit('chat message', msg);
   });
 });

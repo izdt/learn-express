@@ -4,5 +4,5 @@ const router = express.Router();
 module.exports = router;
 
 router.get('/',(req,res)=>{
-  res.render('io',{title:'Socket.IO'});
+   res.render('io',{title:'Socket.IO'});
 });
