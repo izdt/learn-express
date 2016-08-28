@@ -3,12 +3,16 @@
 <script src="/static/scripts/jquery.min.js"></script>
 
 <ul id="message">
+   <% for(let i in messages){ %>
+     <li><span><%=messages[i].date %></span><%=messages[i].message %></li>
+   <%}%>
 </ul>
 <form action="">
       <input id="chatMsg" autocomplete="off" /><button>Send</button>
 </form>
 <script>
     const socket = io("http://localhost:5000");
+    const messages = <%- JSON.stringify(messages) %>;
     $('form').submit(()=>{
         socket.emit('chat message',$('#chatMsg').val());
         $('#chatMsg').val('');
