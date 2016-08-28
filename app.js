@@ -31,6 +31,7 @@ app.use('/api',routes.api);
 app.use('/doc',routes.markdown);
 app.use('/app',routes.app);
 app.use('/io',routes.io);
+app.use('/c',routes.chat);
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

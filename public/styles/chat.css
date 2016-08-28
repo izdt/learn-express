@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #fbf9fe;
+}
+
+.wraper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.chatPanel {
+    font-size: 14px;
+    font-family: Microsoft Yahei;
+}
