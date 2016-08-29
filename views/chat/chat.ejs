@@ -19,10 +19,20 @@
                 <div class="nick"></div>
                 <div class="msgWrapper">
                     <div class="msg">
-                        Hello Message
+                        Hello World!
                     </div>
                 </div>
             </div>
+            <div class="messageLeft">
+                <div class="avatar"></div>
+                <div class="nick"></div>
+                <div class="msgWrapper">
+                    <div class="msg">
+                        简单介绍一下，这是一个匿名聊天应用。
+                    </div>
+                </div>
+            </div>
+            <!--<div class="infoBlock">1个小伙伴加入了群聊</div>-->
             <div class="messageRight">
                 <div class="avatar"></div>
                 <div class="nick"></div>
@@ -36,10 +46,20 @@
         <div class="inputPanel">
             <div class="inputBar">
                 <div class="leftIcon"></div>
-                <div class="inputBox" contenteditable="true" placeholder="开始匿名畅聊吧"></div>
+                <div class="inputBox" id="inputBox" contenteditable="true" placeholder="开始匿名畅聊吧"></div>
                 <div class="rightIcon"></div>
             </div>
         </div>
     </div>
 </body>
+<script>
+(function(document){
+    //Todo: update this function
+    document.getElementById('inputBox').addEventListener('focus',function(){
+       setTimeout(function(){
+        document.getElementById('inputBox').scrollIntoView();
+       },500);
+    });
+}(document));
+</script>
 </html>

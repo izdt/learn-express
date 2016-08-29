@@ -4,6 +4,8 @@
 }
 body{
     background: #f9f6ef;
+    font-family: 'Microsoft Yahei', Helvetica, Arial, sans-serif;
+    font-weight: 100;
 }
 
 .wraper {
@@ -13,7 +15,7 @@ body{
 
 .chatPanel {
     font-size: 14px;
-    font-family: Microsoft Yahei;
+    /* font-family: 'Microsoft Yahei'; */
     padding: 0 10px;
     overflow-x: hidden;
 }
@@ -27,8 +29,6 @@ body{
     display: inline-block;
     text-align: center;
 }
-
-.msg {}
 
 .messageLeft {
     float: left;
@@ -51,23 +51,25 @@ body{
 }
 .msgWrapper {
     background-color: #fff;
-    margin-left: 15px;
-    /* margin-top: 17px; */
+    margin-left: 12px;
+    /*margin-top: 17px; */
     float: left;
     max-width: 65%;
     word-break: break-all;
     padding: 10px;
     border-radius: 3px;
     position: relative;
+    margin-top: 1px;
+    border: 1px solid rgba(204, 204, 204,.3);
 }
 .msgWrapper::before{
     content: "";
     position: absolute;
     border-color: transparent #fff;
     border-style: solid;
-    border-width: 10px 14px 10px 0;
+    border-width: 8px 10px 8px 0;
     top: 9px;
-    left: -12px;
+    left: -10px;
 }
 
 .messageRight {
@@ -85,7 +87,7 @@ body{
 .messageRight .msgWrapper {
     background-color: #b9ef6f;
     margin-left: 0px;
-    margin-right: 15px;
+    margin-right: 12px;
     /* margin-top: 17px; */
     float: right;
     max-width: 65%;
@@ -101,10 +103,10 @@ body{
     border-color: transparent #b9ef6f;
     float: right;
     position: absolute;
-    border-width: 8px 0 8px 12px;
+    border-width: 8px 0 8px 10px;
     left: auto;
     top: 12px;
-    right: -12px;
+    right: -10px;
 }
 .messageRight .avatar{
     background-color: #28ab10;
@@ -114,13 +116,12 @@ body{
     width: 100%;
     position: fixed;
     left: 0;
-    -webkit-user-select: auto!important;
     bottom: 0;
     /* background: #fafbfd; */
     z-index: 10;
     overflow: hidden;
     height: 45px;
-    border: 1px solid #cac;
+    /* border: 1px solid #e4e4e4; */
 }
 
 .inputBar {
@@ -156,6 +157,8 @@ body{
     border: 1px solid #c4cccc;
     margin: 0 10px;
     font-family: Microsoft Yahei;
+    /* overflow: hidden; */
+    /* height: 20px; */
 }
 .inputBox:focus{
     outline:none;
@@ -175,4 +178,17 @@ body{
     border-radius: 14px;
     margin-top: 3px;
     background: no-repeat center/70%  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAhUlEQVQ4T2NkIAJk59Wm/P/P8Gfa5OYFhJQzElIAks/Kr80BGTh9UvMMQupHDcQeQqNhiDflMIITLSMDBz5VjAyMdv///fvHwMR4BJ+6////f2XMyq1NIGjg//8O/5gY/jH+ZzyEz0Amhn9fRxP2aMKGhsBQyMs1yQwMjL+nTWxeRKjEBgB+N5J6OHzn+gAAAABJRU5ErkJggg==');
+}
+
+.infoBlock {
+    /* width: 100%; */
+    color: #b1b5b5;
+    /* padding: 0 10px; */
+    background-color: #e3e5e5;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: center;
+    font-size: .7rem;
+    padding: 2px 10px;
+    position: relative;
 }
