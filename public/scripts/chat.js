@@ -11,6 +11,7 @@
     var chatInput = document.getElementById('inputBox');
     var inputPanel = document.getElementsByClassName('inputPanel')[0];
     var chatPanel = document.getElementsByClassName('chatPanel')[0];
+    var rightIcon = document.getElementsByClassName('rightIcon')[0];
     var socket = io("http://192.168.8.8:5000");
     var _addSocketListeners = function(){
         socket.on('connect',function(){
@@ -50,6 +51,17 @@
                 inputPanel.scrollIntoView();
             },500);
         });
+        chatInput.addEventListener("keyup",function(){
+            if(chatInput.innerText!="")  rightIcon.className="rightIcon send";
+            else rightIcon.className="rightIcon";
+        });
+        rightIcon.addEventListener("click",function(){
+            if(rightIcon.className=="rightIcon send"&&chatInput.innerText!=""){
+                _sendMessage(chatInput.innerText);
+                chatInput.innerText = "";
+                rightIcon.className="rightIcon";
+            }
+        });
         chatInput.addEventListener("keypress",function(){
             var keyPressed = event.keyCode || event.which;
             //if ENTER is pressed
@@ -58,6 +70,8 @@
                 _sendMessage(chatInput.innerText);
                 chatInput.innerText = "";
                 keyPressed=null;
+                chatInput.blur();
+                rightIcon.className="rightIcon";
                 event.preventDefault();
             }
         });
