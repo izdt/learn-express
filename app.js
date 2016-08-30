@@ -47,6 +47,8 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
   socket.on('chat message', (msg)=>{
+    console.log(msg);
+    /*
     dblib.connect()
     .then((conn)=>{
       return dblib.insert('chat',{date:(new Date()), message:msg},conn);
@@ -54,6 +56,7 @@ io.on('connection', (socket) => {
     .catch((error)=>{
         console.log(error);
     });
+    */
     io.emit('chat message', msg);
   });
 });

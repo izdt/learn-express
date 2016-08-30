@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title><%=title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta content="yes" name="apple-mobile-web-app-capable"><meta content="yes" name="apple-touch-fullscreen">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
     <meta name="full-screen" content="yes">
     <meta content="default" name="apple-mobile-web-app-status-bar-style">
     <link rel="stylesheet" href="/static/styles/chat.css">
@@ -52,14 +53,6 @@
         </div>
     </div>
 </body>
-<script>
-(function(document){
-    //Todo: update this function
-    document.getElementById('inputBox').addEventListener('focus',function(){
-       setTimeout(function(){
-        document.getElementById('inputBox').scrollIntoView();
-       },500);
-    });
-}(document));
-</script>
+    <script src="/static/scripts/socket.io.js"></script>
+    <script src="/static/scripts/chat.js?i=aaa"></script>
 </html>

@@ -18,6 +18,7 @@ body{
     /* font-family: 'Microsoft Yahei'; */
     padding: 0 10px;
     overflow-x: hidden;
+    margin-bottom: 40px;
 }
 
 .timeBlock {
@@ -120,7 +121,7 @@ body{
     /* background: #fafbfd; */
     z-index: 10;
     overflow: hidden;
-    height: 45px;
+    /* height: 45px; */
     /* border: 1px solid #e4e4e4; */
 }
 
