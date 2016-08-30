@@ -48,6 +48,7 @@ io.on('connection', (socket) => {
   });
   socket.on('chat message', (msg)=>{
     console.log(msg);
+    socket.send(socket.id);
     /*
     dblib.connect()
     .then((conn)=>{
