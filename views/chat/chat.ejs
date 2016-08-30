@@ -14,7 +14,14 @@
     <div class="wraper">
         <div class="pullDown"></div>
         <div class="chatPanel">
-            <div class="timeBlock">今天 20:20</div>
+            <div class="timeBlock">今天
+                <%
+                const now = new Date();
+                const hours = now.getHours()<10?"0"+now.getHours():now.getHours();
+                const minutes = now.getMinutes()<10?"0"+now.getMinutes():now.getMinutes();
+                const time = hours+":"+minutes;
+                %>
+                <%=time %></div>
             <div class="messageLeft">
                 <div class="avatar"></div>
                 <div class="nick"></div>
