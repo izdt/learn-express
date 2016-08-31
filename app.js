@@ -43,21 +43,19 @@ app.use((err, req, res, next) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  socket.send(socket.id);
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
   socket.on('chat message', (msg)=>{
     console.log(msg);
-    socket.send(socket.id);
-    /*
     dblib.connect()
     .then((conn)=>{
-      return dblib.insert('chat',{date:(new Date()), message:msg},conn);
+      return dblib.insert('chat',{date:Date.now(), message:msg},conn);
     })
     .catch((error)=>{
         console.log(error);
     });
-    */
     io.emit('chat message', msg);
   });
 });
