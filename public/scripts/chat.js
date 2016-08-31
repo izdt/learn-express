@@ -13,6 +13,17 @@
     var chatPanel = document.getElementsByClassName('chatPanel')[0];
     var rightIcon = document.getElementsByClassName('rightIcon')[0];
     var socket = io("http://192.168.8.8:5000");
+
+    var htmlspecialchars = function(str)    
+    {    
+        str = str.replace(/&/g, '&amp;');  
+        str = str.replace(/</g, '&lt;');  
+        str = str.replace(/>/g, '&gt;');  
+        str = str.replace(/"/g, '&quot;');  
+        str = str.replace(/'/g, '&#039;');  
+        return str;  
+    };  
+  
     var _addSocketListeners = function(){
         socket.on('connect',function(){
             console.log("Connected!"+ socket.io.engine.id);
@@ -36,6 +47,7 @@
         inputPanel.scrollIntoView();
     }
     var _sendMessage = function(message){
+        message = htmlspecialchars(message);
         var rightMsgdiv = document.createElement('div');
         rightMsgdiv.className = "messageRight";
         rightMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
