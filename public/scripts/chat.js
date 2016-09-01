@@ -26,19 +26,23 @@
   
     var _addSocketListeners = function(){
         socket.on('connect',function(){
-            console.log("Connected!"+ socket.io.engine.id);
-            sessionStorage.setItem('userId', socket.io.engine.id);
+            console.log("Connected! "+ socket.io.engine.id);
+            console.log(socket.io.engine);
+            if(!localStorage.getItem('userId'))
+            localStorage.setItem('userId', socket.io.engine.id);
         });
         socket.on('chat message',function(message){
            _receiveMessage(message);
            console.log(message);
         });
         socket.on('event',function(){});
-        socket.on('disconnect',function(){});
+        socket.on('disconnect',function(){
+            _sendLeave();
+        });
     };
 
     var _receiveMessage = function(messageObj){
-        if(messageObj.user==sessionStorage.getItem('userId')) return;
+        //if(messageObj.user==localStorage.getItem('userId')) return;
         var leftMsgdiv = document.createElement('div');
         leftMsgdiv.className = "messageLeft";
         leftMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
@@ -54,7 +58,10 @@
                         +message+'</div>';
         chatPanel.appendChild(rightMsgdiv);
         inputPanel.scrollIntoView();
-        socket.emit('chat message', {msg:message,user:sessionStorage.getItem('userId')});
+        socket.emit('chat message', {msg:message,user:localStorage.getItem('userId')});
+    };
+    var _sendLeave = function(){
+        socket.emit('user unload',{user:localStorage.getItem('userId')});
     };
 
     var _addInputListeners = function(){
@@ -97,6 +104,9 @@
 
         //console.log("document.onload", e, Date.now()); 
         _init();
+    };
+    window.onbeforeunload = function(e){
+        _sendLeave();
     };
     
 })(io,document,window);

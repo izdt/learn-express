@@ -3,14 +3,13 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const app = express();
 const logger = require('morgan');
-const socketio = require('socket.io');
 const dblib = require('./lib/dblib');
+const chat = require('./controller/chat');
 const port = 5000;
 
 const server = app.listen(port,(err)=>{
     console.log('server listen at ' + port);
 });
-const io = socketio(server);
 
 //app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/public'));
@@ -41,23 +40,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.send(socket.id);
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-  socket.on('chat message', (msg)=>{
-    console.log(msg);
-    dblib.connect()
-    .then((conn)=>{
-      return dblib.insert('chat',{date:Date.now(), message:msg},conn);
-    })
-    .catch((error)=>{
-        console.log(error);
-    });
-    io.emit('chat message', msg);
-  });
-});
+chat(server);
 
 module.exports = app;
