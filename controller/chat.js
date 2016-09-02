@@ -4,6 +4,7 @@ module.exports = (server)=>{
   const io = socketio(server);
   io.on('connection', (socket) => {
     console.log('a user connected'+socket.id);
+    console.log(Object.keys(io.sockets.connected).length);
     socket.send(socket.id);
     socket.on('disconnect', () => {
       console.log('user disconnected'+socket.id);
@@ -22,13 +23,13 @@ module.exports = (server)=>{
     }); 
     socket.on('user unload',(msg)=>{
       console.log(msg);
-      dblib.connect()
-      .then((conn)=>{
-        return dblib.insert('chat',{date:Date.now(), message:msg},conn);
-      })
-      .catch((error)=>{
-          console.log(error);
-      });
+      // dblib.connect()
+      // .then((conn)=>{
+      //   return dblib.insert('chat',{date:Date.now(), message:msg},conn);
+      // })
+      // .catch((error)=>{
+      //     console.log(error);
+      // });
     });
   });
 };

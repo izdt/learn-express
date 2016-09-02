@@ -13,7 +13,6 @@
     var chatPanel = document.getElementsByClassName('chatPanel')[0];
     var rightIcon = document.getElementsByClassName('rightIcon')[0];
     var socket = io("http://192.168.8.8:5000");
-
     var htmlspecialchars = function(str)    
     {    
         str = str.replace(/&/g, '&amp;');  
@@ -27,7 +26,6 @@
     var _addSocketListeners = function(){
         socket.on('connect',function(){
             console.log("Connected! "+ socket.io.engine.id);
-            console.log(socket.io.engine);
             if(!localStorage.getItem('userId'))
             localStorage.setItem('userId', socket.io.engine.id);
         });
