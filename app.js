@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const routes = require('./routes');
-const app = express();
+const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const routes = require('./routes');
 const dblib = require('./lib/dblib');
 const chat = require('./controller/chat');
+
+const app = express();
 const port = 5000;
 
 const server = app.listen(port,(err)=>{
@@ -16,6 +18,7 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
+app.use(cookieParser());
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 

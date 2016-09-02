@@ -3,6 +3,7 @@ const router = express.Router();
 module.exports = router;
 
 router.get('/',(req,res)=>{
+    console.log('Cookies: ', req.cookies);
     res.render('index');
     //res.send('Hello world!');
 });
