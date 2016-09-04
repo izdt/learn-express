@@ -26,12 +26,12 @@
     };  
 
     var _toggleShowActionPanel = function(){
-        if(actionPanel.style.display=="") actionPanel.style.display="block";
-        else actionPanel.style.display="";
+        if(actionPanel.style.height=="") actionPanel.style.height="160px";
+        else actionPanel.style.height="";
     };
 
     var _hideActionPanel = function(){
-        actionPanel.style.display="";
+        actionPanel.style.height="";
     };
 
     var _addSocketListeners = function(){
