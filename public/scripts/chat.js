@@ -13,6 +13,7 @@
     var chatPanel = document.getElementsByClassName('chatPanel')[0];
     var rightIcon = document.getElementsByClassName('rightIcon')[0];
     var socket = io("http://192.168.8.8:5000");
+    
     var htmlspecialchars = function(str)    
     {    
         str = str.replace(/&/g, '&amp;');  
@@ -22,7 +23,15 @@
         str = str.replace(/'/g, '&#039;');  
         return str;  
     };  
-  
+
+    var _showActionPanel = function(){
+        document.getElementById("actionPanel").style.display="block";
+    };
+
+    var _hideActionPanel = function(){
+        document.getElementById("actionPanel").style.display="";
+    };
+
     var _addSocketListeners = function(){
         socket.on('connect',function(){
             console.log("Connected! "+ socket.io.engine.id);
@@ -63,7 +72,11 @@
     };
 
     var _addInputListeners = function(){
+        chatPanel.addEventListener('click',function(){
+            _hideActionPanel();
+        });
         chatInput.addEventListener('focus',function(){  
+            _hideActionPanel();
             setTimeout(function(){
                 inputPanel.scrollIntoView();
             },500);
@@ -73,6 +86,9 @@
             else rightIcon.className="rightIcon";
         });
         rightIcon.addEventListener("click",function(){
+            if(rightIcon.className=="rightIcon"){
+                _showActionPanel();
+            }
             if(rightIcon.className=="rightIcon send"&&chatInput.innerText!=""){
                 _sendMessage(chatInput.innerText);
                 chatInput.innerText = "";
