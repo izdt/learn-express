@@ -4,7 +4,7 @@
 }
 body{
     background: #f9f6ef;
-    font-family: 'Microsoft Yahei', Helvetica, Arial, sans-serif;
+    font-family: 'Heiti SC','Microsoft Yahei', Helvetica, Arial, sans-serif;
     font-weight: 100;
 }
 
@@ -207,4 +207,11 @@ body{
     font-size: 0.9rem;
     display: block;
     margin: 4px 9px;
+}
+
+.morePanel {
+    width: 100%;
+    height: 260px;
+    background-color: #fbfbfb;
+    display: none;
 }
