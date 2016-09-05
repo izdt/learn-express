@@ -216,3 +216,18 @@ body{
     background-color: #fbfbfb;
     transition: height .2s;
 }
+
+ul.actions {
+    overflow: hidden;
+    font-size: 0.8rem;
+    list-style: none;
+}
+ul.actions li{
+    display:list-item;
+    float:left;
+    margin:15px;
+    color: #333;
+    text-align: center;
+}
+ul.actions li i{
+width: 100%;display: inline-block;            height: 55px;border: 1px solid #ccc;border-radius: 8px;}
