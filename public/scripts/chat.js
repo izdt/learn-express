@@ -26,7 +26,7 @@
     };  
 
     var _toggleShowActionPanel = function(){
-        if(actionPanel.style.height=="") actionPanel.style.height="160px";
+        if(actionPanel.style.height=="") actionPanel.style.height="200px";
         else actionPanel.style.height="";
     };
 

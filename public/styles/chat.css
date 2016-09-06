@@ -20,6 +20,7 @@ body{
     padding: 0 10px;
     overflow-x: hidden;
     margin-bottom: 50px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .timeBlock {
@@ -219,15 +220,22 @@ body{
 
 ul.actions {
     overflow: hidden;
+    margin: 0 10px;
+    padding-top:5px;
     font-size: 0.8rem;
     list-style: none;
 }
 ul.actions li{
     display:list-item;
     float:left;
-    margin:15px;
+    margin:10px;
     color: #333;
     text-align: center;
 }
 ul.actions li i{
-width: 100%;display: inline-block;            height: 55px;border: 1px solid #ccc;border-radius: 8px;}
+    width: 100%;
+    display: inline-block;
+    height: 55px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
