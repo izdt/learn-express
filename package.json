@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/supervisor app.js",
-    "test": "node_modules/.bin/mocha test/testApp.js"
+    "start": "npm-run-all --parallel webpack:watch supervisor test",
+    "webpack":"webpack",
+    "webpack:watch":"webpack --watch",
+    "supervisor": "supervisor app.js",
+    "test": "mocha test/testApp.js"
   },
   "repository": {
     "type": "git",
@@ -31,9 +34,11 @@
     "supervisor": "^0.11.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.14.0",
     "mocha": "^3.0.2",
     "should": "^11.1.0",
     "supertest": "^2.0.0",
