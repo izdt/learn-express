@@ -29,7 +29,7 @@ describe('Simple app test', () => {
     request(server)
     .get('/')
     .expect('Content-Type', 'text/html; charset=utf-8')
-    .expect('Content-Length', '144')
+    .expect('Content-Length', '197')
     .end(done);
   });
 
