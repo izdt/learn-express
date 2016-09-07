@@ -15,6 +15,7 @@ const server = app.listen(port,(err)=>{
 
 //app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/public'));
+app.use('/dist', express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
