@@ -8,7 +8,8 @@
     "webpack": "webpack",
     "webpack:watch": "webpack --watch",
     "supervisor": "supervisor app.js",
-    "test": "mocha test/*.js",
+    "test": "mocha --reporter spec test/*.js",
+    "test:watch": "npm run test -- --watch",
     "dev": "npm run webpack & npm run supervisor"
   },
   "repository": {
