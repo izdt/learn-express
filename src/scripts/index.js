@@ -1,9 +1,11 @@
-import Chat from './chat';
-(function(document,window,undefined){
-    const chat = new Chat();
+import ChatApp from './chat';
+import io from '../../node_modules/socket.io-client/socket.io.js';
+
+(function(io,document,window,undefined){
+    const socket = io("http://192.168.8.8:5000");
     window.onload = (e)=>{ 
-        const body = document.getElementsByTagName('body')[0];
-        chat.showHello();
-        chat.changeDomValue(body,"Hello World!");
+         const chatApp = new ChatApp(document,socket);
+         chatApp.addSocketListeners();
+         chatApp.addInputListeners();
     };
-})(document,window);
+})(io,document,window);
