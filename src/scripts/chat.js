@@ -29,7 +29,7 @@ class ChatApp{
         this.socket.emit('chat message', {msg:message,user:localStorage.getItem('userId')});
     }
 
-    reieveMessage(message){
+    receiveMessage(message){
         //if(messageObj.user==localStorage.getItem('userId')) return;
         let msg = this.htmlspecialchars(message.msg);
         let leftMsgdiv = this.dom.createElement('div');
@@ -54,18 +54,19 @@ class ChatApp{
     }
 
     addSocketListeners(){
+        const _this = this;
         this.socket.on('connect',()=>{
-            console.log("Connected! "+ this.socket.io.engine.id);
+            console.log("Connected! "+ _this.socket.io.engine.id);
             if(!localStorage.getItem('userId'))
-            localStorage.setItem('userId', this.socket.io.engine.id);
+            localStorage.setItem('userId', _this.socket.io.engine.id);
         });
         this.socket.on('chat message',(message)=>{
-           this.receiveMessage(message);
+           _this.receiveMessage(message);
            console.log(message);
         });
         this.socket.on('event',()=>{});
         this.socket.on('disconnect',()=>{
-            this.sendLeave();
+            _this.sendLeave();
         });
     }
 
