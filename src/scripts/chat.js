@@ -85,7 +85,7 @@ class ChatApp{
             if(_this.chatInput.innerText!="")  _this.rightIcon.className="rightIcon send";
             else _this.rightIcon.className="rightIcon";
         });
-        this.rightIcon.addEventListener("touchstart",function(){
+        this.rightIcon.addEventListener("touchstart",function(e){
             if(_this.rightIcon.className=="rightIcon"){
                 _this.toggleShowActionPanel(200);
             }
@@ -94,6 +94,7 @@ class ChatApp{
                 _this.chatInput.innerText = "";
                 _this.rightIcon.className="rightIcon";
             }
+            //e.stopPropagation();
         });
         this.chatInput.addEventListener("keypress",()=>{
             let keyPressed = event.keyCode || event.which;
