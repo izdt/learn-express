@@ -72,7 +72,7 @@ class ChatApp{
 
     addInputListeners(){
         const _this = this;
-        this.chatPanel.addEventListener('touchstart',function(){
+        this.chatPanel.bind('touchstart click',function(){
             _this.hideActionPanel();
         });
         this.chatInput.addEventListener('focus',function(){  
@@ -85,7 +85,7 @@ class ChatApp{
             if(_this.chatInput.innerText!="")  _this.rightIcon.className="rightIcon send";
             else _this.rightIcon.className="rightIcon";
         });
-        this.rightIcon.addEventListener("touchstart",function(e){
+        this.rightIcon.bind("touchstart click",function(e){
             if(_this.rightIcon.className=="rightIcon"){
                 _this.toggleShowActionPanel(200);
             }
