@@ -6,6 +6,7 @@ import io from '../../node_modules/socket.io-client';
 
     window.Element.prototype.bind = (events, callback) => {
         const _this = this;
+        console.log(_this);
         events.split(' ').forEach((v, i, a) => {
             _this.addEventListener(v, callback);
         });
