@@ -71,6 +71,7 @@ class ChatApp{
     }
 
     addInputListeners(){
+        //Change to ()=>{} will not need _this
         const _this = this;
         this.chatPanel.bind('touchstart click',function(){
             _this.hideActionPanel();
