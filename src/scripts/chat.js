@@ -54,46 +54,45 @@ class ChatApp{
     }
 
     addSocketListeners(){
-        const _this = this;
         this.socket.on('connect',()=>{
-            console.log("Connected! "+ _this.socket.io.engine.id);
+            console.log("Connected! "+ this.socket.io.engine.id);
             if(!localStorage.getItem('userId'))
-            localStorage.setItem('userId', _this.socket.io.engine.id);
+            localStorage.setItem('userId', this.socket.io.engine.id);
         });
         this.socket.on('chat message',(message)=>{
-           _this.receiveMessage(message);
-           console.log(message);
+           this.receiveMessage(message);
+           //console.log(message);
         });
         this.socket.on('event',()=>{});
         this.socket.on('disconnect',()=>{
-            _this.sendLeave();
+            this.sendLeave();
         });
     }
 
     addInputListeners(){
-        //Change to ()=>{} will not need _this
-        const _this = this;
-        this.chatPanel.bind('touchstart click',function(){
-            _this.hideActionPanel();
+        //Change to ()=>{} will not need this
+        //if use function express should use const this = this;
+        this.chatPanel.bind('touchstart click',()=>{
+            this.hideActionPanel();
         });
-        this.chatInput.addEventListener('focus',function(){  
-            _this.hideActionPanel();
-            setTimeout(function(){
-                _this.inputPanel.scrollIntoView();
+        this.chatInput.addEventListener('focus',()=>{  
+            this.hideActionPanel();
+            setTimeout(()=>{
+                this.inputPanel.scrollIntoView();
             },500);
         });
-        this.chatInput.addEventListener("keyup",function(){
-            if(_this.chatInput.innerText!="")  _this.rightIcon.className="rightIcon send";
-            else _this.rightIcon.className="rightIcon";
+        this.chatInput.addEventListener("keyup",()=>{
+            if(this.chatInput.innerText!="")  this.rightIcon.className="rightIcon send";
+            else this.rightIcon.className="rightIcon";
         });
-        this.rightIcon.bind("touchstart click",function(e){
-            if(_this.rightIcon.className=="rightIcon"){
-                _this.toggleShowActionPanel(200);
+        this.rightIcon.bind("touchstart click",(e)=>{
+            if(this.rightIcon.className=="rightIcon"){
+                this.toggleShowActionPanel(200);
             }
-            if(_this.rightIcon.className=="rightIcon send"&&_this.chatInput.innerText!=""){
-                _this.sendMessage(_this.chatInput.innerText);
-                _this.chatInput.innerText = "";
-                _this.rightIcon.className="rightIcon";
+            if(this.rightIcon.className=="rightIcon send"&&this.chatInput.innerText!=""){
+                this.sendMessage(this.chatInput.innerText);
+                this.chatInput.innerText = "";
+                this.rightIcon.className="rightIcon";
             }
             //e.stopPropagation();
         });
@@ -102,11 +101,11 @@ class ChatApp{
             //if ENTER is pressed
             if(keyPressed==13)
             {
-                _this.sendMessage(_this.chatInput.innerText);
-                _this.chatInput.innerText = "";
+                this.sendMessage(this.chatInput.innerText);
+                this.chatInput.innerText = "";
                 keyPressed=null;
-                _this.chatInput.blur();
-                _this.rightIcon.className="rightIcon";
+                this.chatInput.blur();
+                this.rightIcon.className="rightIcon";
                 event.preventDefault();
             }
         });

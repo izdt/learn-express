@@ -8,12 +8,12 @@ import io from '../../node_modules/socket.io-client';
 
     window.Element.prototype.hide = function(){
         //works!
-        console.log(this);
+        //console.log(this);
         this.style.display = 'none';
     };
 
     window.Element.prototype.bind = function(events, callback){
-        console.log(this);
+        //console.log(this);
         events.split(' ').forEach((v, i, a) => {
             this.addEventListener(v, callback);
         });
