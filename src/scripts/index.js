@@ -4,8 +4,9 @@ import io from '../../node_modules/socket.io-client';
 (function (io, document, window, undefined) {
     const socket = io("http://localhost:5000");
 
-    //NOTES: array function ()=>{} this will be fixed.
-
+    //NOTES: arrow function ()=>{} this will be fixed.
+    //function expression to use a dynamic this 
+    //Object prototype shouldn't use arrow function'
     window.Element.prototype.hide = function(){
         //works!
         console.log(this);
