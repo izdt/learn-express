@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm run clean-dist",
     "start": "npm-run-all --parallel webpack:watch supervisor",
     "webpack": "webpack",
     "webpack:watch": "webpack --watch",
