@@ -18,6 +18,10 @@ class ChatApp{
         return str;  
     }
 
+    scrollToMessage(){
+        this.chatPanel.querySelector('.chatPanel>div:last-child').scrollIntoView();
+    }
+
     sendMessage(message){
         let msg = this.htmlspecialchars(message);
         let rightMsgdiv = this.dom.createElement('div');
@@ -25,7 +29,8 @@ class ChatApp{
         rightMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +message+'</div>';
         this.chatPanel.appendChild(rightMsgdiv);
-        this.inputPanel.scrollIntoView();
+        //this.inputPanel.scrollIntoView();
+        this.scrollToMessage();
         this.socket.emit('chat message', {msg:message,user:localStorage.getItem('userId')});
     }
 
@@ -37,7 +42,8 @@ class ChatApp{
         leftMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +msg+'</div>';
         this.chatPanel.appendChild(leftMsgdiv);
-        this.inputPanel.scrollIntoView();
+        //this.inputPanel.scrollIntoView();
+        this.scrollToMessage();
     }
 
     toggleShowActionPanel(height){
@@ -72,7 +78,7 @@ class ChatApp{
     addInputListeners(){
         //Change to ()=>{} will not need this
         //if use function express should use const this = this;
-        this.chatPanel.bind('touchstart click',()=>{
+        this.chatPanel.bind('touchstart',()=>{
             this.hideActionPanel();
         });
         this.chatInput.addEventListener('focus',()=>{  
@@ -85,7 +91,7 @@ class ChatApp{
             if(this.chatInput.innerText!="")  this.rightIcon.className="rightIcon send";
             else this.rightIcon.className="rightIcon";
         });
-        this.rightIcon.bind("touchstart click",(e)=>{
+        this.rightIcon.bind("touchstart",(e)=>{
             if(this.rightIcon.className=="rightIcon"){
                 this.toggleShowActionPanel(200);
             }
@@ -93,6 +99,7 @@ class ChatApp{
                 this.sendMessage(this.chatInput.innerText);
                 this.chatInput.innerText = "";
                 this.rightIcon.className="rightIcon";
+                this.chatInput.blur();
             }
             //e.stopPropagation();
         });
