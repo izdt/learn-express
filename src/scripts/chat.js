@@ -56,6 +56,7 @@ class ChatApp{
 
     hideActionPanel(){
         this.actionPanel.style.height="";
+        //this.chatInput.blur();
     }
 
     sendLeave(){
@@ -79,15 +80,15 @@ class ChatApp{
     }
 
     addActionPanelLinsteners(){
-        this.newChatBtn.bind('touchstart',()=>{
+        this.newChatBtn.bind('touchend',()=>{
             console.log('click newChatBtn');
             this.hideActionPanel();
         });
-        this.closeChatBtn.bind('touchstart',()=>{
+        this.closeChatBtn.bind('touchend',()=>{
             console.log('click closeChatBtn');
             this.hideActionPanel();
         });
-        this.aboutUsBtn.bind('touchstart',()=>{
+        this.aboutUsBtn.bind('touchend',()=>{
             console.log('click aboutUsBtn');
             this.hideActionPanel();
         });
