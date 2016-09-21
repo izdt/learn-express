@@ -12,6 +12,7 @@ import io from '../../node_modules/socket.io-client';
     };
 
     window.Element.prototype.bind = function(events, callback){
+        if(events.indexOf('touchstart')>=0 && !('ontouchstart' in window)) events = events.replace('touchstart','click');
         events.split(' ').forEach((v, i, a) => {
             this.addEventListener(v, callback);
         });
