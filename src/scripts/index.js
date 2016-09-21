@@ -22,5 +22,6 @@ import io from '../../node_modules/socket.io-client';
         const chatApp = new ChatApp(document, socket);
         chatApp.addSocketListeners();
         chatApp.addInputListeners();
+        chatApp.addActionPanelLinsteners();
     };
 })(io, document, window);

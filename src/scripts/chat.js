@@ -6,7 +6,10 @@ class ChatApp{
         this.inputPanel = dom.getElementsByClassName('inputPanel')[0];
         this.chatPanel = dom.getElementsByClassName('chatPanel')[0];
         this.rightIcon = dom.getElementsByClassName('rightIcon')[0];
-        this.actionPanel = dom.getElementById("actionPanel");
+        this.actionPanel = dom.getElementById('actionPanel');
+        this.newChatBtn = dom.getElementsByClassName('newChat')[0];
+        this.closeChatBtn = dom.getElementsByClassName('closeChat')[0];
+        this.aboutUsBtn = dom.getElementsByClassName('aboutUs')[0];
     }
 
     htmlspecialchars(str){    
@@ -75,6 +78,21 @@ class ChatApp{
         });
     }
 
+    addActionPanelLinsteners(){
+        this.newChatBtn.bind('touchstart',()=>{
+            console.log('click newChatBtn');
+            this.hideActionPanel();
+        });
+        this.closeChatBtn.bind('touchstart',()=>{
+            console.log('click closeChatBtn');
+            this.hideActionPanel();
+        });
+        this.aboutUsBtn.bind('touchstart',()=>{
+            console.log('click aboutUsBtn');
+            this.hideActionPanel();
+        });
+    }
+
     addInputListeners(){
         //Change to ()=>{} will not need this
         //if use function express should use const this = this;
@@ -87,11 +105,11 @@ class ChatApp{
                 this.inputPanel.scrollIntoView();
             },500);
         });
-        this.chatInput.addEventListener("keyup",()=>{
+        this.chatInput.addEventListener('keyup',()=>{
             if(this.chatInput.innerText!="")  this.rightIcon.className="rightIcon send";
             else this.rightIcon.className="rightIcon";
         });
-        this.rightIcon.bind("touchstart",(e)=>{
+        this.rightIcon.bind('touchstart',(e)=>{
             if(this.rightIcon.className=="rightIcon"){
                 this.toggleShowActionPanel(200);
             }
@@ -103,7 +121,7 @@ class ChatApp{
             }
             //e.stopPropagation();
         });
-        this.chatInput.addEventListener("keypress",()=>{
+        this.chatInput.addEventListener('keypress',()=>{
             let keyPressed = event.keyCode || event.which;
             //if ENTER is pressed
             if(keyPressed==13)
