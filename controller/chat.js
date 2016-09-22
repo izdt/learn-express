@@ -31,6 +31,9 @@ module.exports = (server)=>{
       //     console.log(error);
       // });
     });
+    socket.on('user disconnect',()=>{
+      console.log("user disconnnet");
+    });
   });
 };
 
