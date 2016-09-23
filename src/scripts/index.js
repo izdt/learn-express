@@ -2,7 +2,7 @@ import ChatApp from './chat';
 import io from '../../node_modules/socket.io-client';
 
 (function (io, document, window, undefined) {
-    const socket = io("http://localhost:5000/chat");
+    const socket = io("/chat");
 
     //NOTES: array function ()=>{} this will be fixed.
 
