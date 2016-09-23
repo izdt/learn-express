@@ -6,7 +6,10 @@ class ChatApp{
         this.inputPanel = dom.getElementsByClassName('inputPanel')[0];
         this.chatPanel = dom.getElementsByClassName('chatPanel')[0];
         this.rightIcon = dom.getElementsByClassName('rightIcon')[0];
-        this.actionPanel = dom.getElementById("actionPanel");
+        this.actionPanel = dom.getElementById('actionPanel');
+        this.newChatBtn = dom.getElementsByClassName('newChat')[0];
+        this.closeChatBtn = dom.getElementsByClassName('closeChat')[0];
+        this.aboutUsBtn = dom.getElementsByClassName('aboutUs')[0];
     }
 
     htmlspecialchars(str){    
@@ -18,6 +21,10 @@ class ChatApp{
         return str;  
     }
 
+    scrollToMessage(){
+        this.chatPanel.querySelector('.chatPanel>div:last-child').scrollIntoView();
+    }
+
     sendMessage(message){
         let msg = this.htmlspecialchars(message);
         let rightMsgdiv = this.dom.createElement('div');
@@ -25,7 +32,8 @@ class ChatApp{
         rightMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +message+'</div>';
         this.chatPanel.appendChild(rightMsgdiv);
-        this.inputPanel.scrollIntoView();
+        //this.inputPanel.scrollIntoView();
+        this.scrollToMessage();
         this.socket.emit('chat message', {msg:message,user:localStorage.getItem('userId')});
     }
 
@@ -37,7 +45,8 @@ class ChatApp{
         leftMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +msg+'</div>';
         this.chatPanel.appendChild(leftMsgdiv);
-        this.inputPanel.scrollIntoView();
+        //this.inputPanel.scrollIntoView();
+        this.scrollToMessage();
     }
 
     toggleShowActionPanel(height){
@@ -47,6 +56,7 @@ class ChatApp{
 
     hideActionPanel(){
         this.actionPanel.style.height="";
+        //this.chatInput.blur();
     }
 
     sendLeave(){
@@ -69,10 +79,25 @@ class ChatApp{
         });
     }
 
+    addActionPanelLinsteners(){
+        this.newChatBtn.bind('touchend',()=>{
+            console.log('click newChatBtn');
+            this.hideActionPanel();
+        });
+        this.closeChatBtn.bind('touchend',()=>{
+            console.log('click closeChatBtn');
+            this.hideActionPanel();
+        });
+        this.aboutUsBtn.bind('touchend',()=>{
+            console.log('click aboutUsBtn');
+            this.hideActionPanel();
+        });
+    }
+
     addInputListeners(){
         //Change to ()=>{} will not need this
         //if use function express should use const this = this;
-        this.chatPanel.bind('touchstart click',()=>{
+        this.chatPanel.bind('touchstart',()=>{
             this.hideActionPanel();
         });
         this.chatInput.addEventListener('focus',()=>{  
@@ -81,11 +106,11 @@ class ChatApp{
                 this.inputPanel.scrollIntoView();
             },500);
         });
-        this.chatInput.addEventListener("keyup",()=>{
+        this.chatInput.addEventListener('keyup',()=>{
             if(this.chatInput.innerText!="")  this.rightIcon.className="rightIcon send";
             else this.rightIcon.className="rightIcon";
         });
-        this.rightIcon.bind("touchstart click",(e)=>{
+        this.rightIcon.bind('touchstart',(e)=>{
             if(this.rightIcon.className=="rightIcon"){
                 this.toggleShowActionPanel(200);
             }
@@ -93,10 +118,11 @@ class ChatApp{
                 this.sendMessage(this.chatInput.innerText);
                 this.chatInput.innerText = "";
                 this.rightIcon.className="rightIcon";
+                this.chatInput.blur();
             }
             //e.stopPropagation();
         });
-        this.chatInput.addEventListener("keypress",()=>{
+        this.chatInput.addEventListener('keypress',()=>{
             let keyPressed = event.keyCode || event.which;
             //if ENTER is pressed
             if(keyPressed==13)
