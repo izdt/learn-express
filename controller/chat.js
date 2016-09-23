@@ -1,10 +1,10 @@
 const socketio = require('socket.io');
 const dblib = require('../lib/dblib');
 module.exports = (server)=>{
-  const io = socketio(server);
+  const io = socketio(server).of('chat');
   io.on('connection', (socket) => {
     console.log('a user connected'+socket.id);
-    console.log(Object.keys(io.sockets.connected).length);
+    //console.log(Object.keys(io.sockets.connected).length);
     socket.send(socket.id);
     socket.on('disconnect', () => {
       console.log('user disconnected'+socket.id);
