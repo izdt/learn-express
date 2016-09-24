@@ -1,7 +1,8 @@
 class ChatApp{
-    constructor(dom,socket){
+    constructor(dom,socket,room){
         this.dom = dom;
-        this.socket = socket;
+        this.socket = socket; 
+        this.room = room;
         this.chatInput = dom.getElementById('inputBox');
         this.inputPanel = dom.getElementsByClassName('inputPanel')[0];
         this.chatPanel = dom.getElementsByClassName('chatPanel')[0];
@@ -34,7 +35,7 @@ class ChatApp{
         this.chatPanel.appendChild(rightMsgdiv);
         //this.inputPanel.scrollIntoView();
         this.scrollToMessage();
-        this.socket.emit('chat message', {msg:message,user:localStorage.getItem('userId')});
+        this.socket.emit('chat message', this.room, {msg:message,user:localStorage.getItem('userId')});
     }
 
     receiveMessage(message){
@@ -60,11 +61,13 @@ class ChatApp{
     }
 
     sendLeave(){
-        this.socket.emit('user unload',{user:localStorage.getItem('userId')});
+        this.socket.emit('user unload', this.room, {user:localStorage.getItem('userId')});
     }
 
     addSocketListeners(){
+        //this.socket.join(this.room);
         this.socket.on('connect',()=>{
+            this.socket.emit('join room', this.room);
             console.log("Connected! "+ this.socket.io.engine.id);
             if(!localStorage.getItem('userId'))
             localStorage.setItem('userId', this.socket.io.engine.id);
