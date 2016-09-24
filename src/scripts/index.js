@@ -19,6 +19,7 @@ import io from '../../node_modules/socket.io-client';
     };
 
     window.onload = (e) => {
+        let room = "";
         const chatApp = new ChatApp(document, socket, "room123");
         chatApp.addSocketListeners();
         chatApp.addInputListeners();
