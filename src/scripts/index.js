@@ -19,8 +19,8 @@ import io from '../../node_modules/socket.io-client';
     };
 
     window.onload = (e) => {
-        let room = "";
-        const chatApp = new ChatApp(document, socket, "room123");
+        let room = location.pathname.substring(location.pathname.lastIndexOf('/')+1);
+        const chatApp = new ChatApp(document, socket, room);
         chatApp.addSocketListeners();
         chatApp.addInputListeners();
         chatApp.addActionPanelLinsteners();
