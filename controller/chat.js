@@ -15,7 +15,7 @@ module.exports = (server)=>{
     socket.on('disconnect', () => {
       console.log('user disconnected'+socket.id);
     });
-    socket.on('chat message', (id,msg)=>{
+    socket.on('chat message', (id, msg)=>{
       console.log("room:"+id);
       console.log(msg);
       dblib.connect()
@@ -28,8 +28,8 @@ module.exports = (server)=>{
       //io.emit('chat message', msg);
       socket.broadcast.to(id).emit('chat message', msg);
     }); 
-    socket.on('user unload',(msg)=>{
-      console.log(msg);
+    socket.on('user unload',(id, msg)=>{
+      console.log("user unload:"+ JSON.stringify(msg));
       // dblib.connect()
       // .then((conn)=>{
       //   return dblib.insert('chat',{date:Date.now(), message:msg},conn);
