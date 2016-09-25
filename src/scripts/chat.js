@@ -11,6 +11,7 @@ class ChatApp{
         this.newChatBtn = dom.getElementsByClassName('newChat')[0];
         this.closeChatBtn = dom.getElementsByClassName('closeChat')[0];
         this.aboutUsBtn = dom.getElementsByClassName('aboutUs')[0];
+        this.leftIconBtn = dom.getElementsByClassName('leftIcon')[0];
     }
 
     htmlspecialchars(str){    
@@ -83,16 +84,20 @@ class ChatApp{
     }
 
     addActionPanelLinsteners(){
-        this.newChatBtn.bind('touchend',()=>{
+        this.newChatBtn.bind('touchend click',()=>{
             console.log('click newChatBtn');
             this.hideActionPanel();
         });
-        this.closeChatBtn.bind('touchend',()=>{
+        this.closeChatBtn.bind('touchend click',()=>{
             console.log('click closeChatBtn');
             this.hideActionPanel();
         });
-        this.aboutUsBtn.bind('touchend',()=>{
+        this.aboutUsBtn.bind('touchend click',()=>{
             console.log('click aboutUsBtn');
+            this.hideActionPanel();
+        });
+        this.leftIconBtn.bind('touchend click',()=>{
+            console.log('click leftIconBtn');
             this.hideActionPanel();
         });
     }
@@ -100,7 +105,7 @@ class ChatApp{
     addInputListeners(){
         //Change to ()=>{} will not need this
         //if use function express should use const this = this;
-        this.chatPanel.bind('touchstart',()=>{
+        this.chatPanel.bind('touchstart click',()=>{
             this.hideActionPanel();
         });
         this.chatInput.addEventListener('focus',()=>{  
@@ -113,7 +118,7 @@ class ChatApp{
             if(this.chatInput.innerText!="")  this.rightIcon.className="rightIcon send";
             else this.rightIcon.className="rightIcon";
         });
-        this.rightIcon.bind('touchstart',(e)=>{
+        this.rightIcon.bind('touchstart click',(e)=>{
             if(this.rightIcon.className=="rightIcon"){
                 this.toggleShowActionPanel(200);
             }
