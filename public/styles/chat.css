@@ -257,3 +257,13 @@ i.closeChat {
 i.aboutUs{
     background: no-repeat center/70% url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABZElEQVRoQ2NkGOKAcYi7n2HUAwMdg6MxMBoDFIbAaBKiMAAp1j4aAxQHIYUGEBsDUkB71Mi06wxQ3xcy9RLURqwHMhgZGcuBpt0kaCKagv///2cBhe6Rqo9Y9UR7gImJSeXfv38lxBpML3WjHqBXSOOyZzQGhnsMGAI9+AeIL9PKo7RMQu5AR+8A4v9A7ArEe2nhCVp6IBro4CVQR4cD6VVDzQOgwAFVYqAkNAsaE1T3Ay1jgOqOxWbgqAcIBLMHUL4AiAOB+DsJUaINVPsViB8Q0kPrGEgBOmA2EPMCMdEtUmC7qwXY7gI5fs6oB6AhkEFma3Q0BkaT0EhPQmHAAGgDYn1osUgoRYDlB1MpRJSD0RWNegBLsJFbjI7GAKEQoHVTgpD9WOVH8wCWYEkBjsxNAor/IytISdfEBB3RW0BIK7FJiJA5AyY/6oEBC3qoxaMxMBoDFIbAaBKiMAAp1j7kYwAAmm7PMaHGzlwAAAAASUVORK5CYII=');  
 }
+
+#messageBox:target {
+    height: 100%;
+    z-index: 10;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(255,255,255,.88);
+}

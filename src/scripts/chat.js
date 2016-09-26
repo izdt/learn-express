@@ -87,6 +87,7 @@ class ChatApp{
         this.newChatBtn.bind('touchend click',()=>{
             console.log(location.href+this.socket.io.engine.id);
             console.log('click newChatBtn');
+            location.hash = "messageBox"; 
             this.hideActionPanel();
         });
         this.closeChatBtn.bind('touchend click',()=>{
