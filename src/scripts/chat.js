@@ -85,6 +85,7 @@ class ChatApp{
 
     addActionPanelLinsteners(){
         this.newChatBtn.bind('touchend click',()=>{
+            console.log(location.href+this.socket.io.engine.id);
             console.log('click newChatBtn');
             this.hideActionPanel();
         });
