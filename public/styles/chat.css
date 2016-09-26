@@ -267,3 +267,7 @@ i.aboutUs{
     top: 0;
     background: rgba(255,255,255,.88);
 }
+#messageBox>div{
+    text-align:center;
+    margin-top:100px;
+}

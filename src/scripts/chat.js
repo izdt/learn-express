@@ -14,6 +14,10 @@ class ChatApp{
         this.leftIconBtn = dom.getElementsByClassName('leftIcon')[0];
     }
 
+    getUid(){
+        return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
+    }
+
     htmlspecialchars(str){    
         str = str.replace(/&/g, '&amp;');  
         str = str.replace(/</g, '&lt;');  
@@ -85,9 +89,10 @@ class ChatApp{
 
     addActionPanelLinsteners(){
         this.newChatBtn.bind('touchend click',()=>{
-            console.log(location.href+this.socket.io.engine.id);
+            //console.log(location.href+this.socket.io.engine.id);
+            console.log('http://'+location.host+'/c/' + this.getUid());
             console.log('click newChatBtn');
-            location.hash = "messageBox"; 
+            location.hash = 'messageBox'; 
             this.hideActionPanel();
         });
         this.closeChatBtn.bind('touchend click',()=>{
