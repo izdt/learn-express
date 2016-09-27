@@ -1,9 +1,10 @@
 import ChatApp from './chat';
 import io from '../../node_modules/socket.io-client';
+//import QrCode from './qrcode.min.js';
 
 (function (io, document, window, undefined) {
     const socket = io("/chat");
-
+    //console.log(QrCode);
     //NOTES: arrow function ()=>{} this will be fixed.
     //function expression use a dynamic this 
     //Object prototype shouldn't use arrow function
