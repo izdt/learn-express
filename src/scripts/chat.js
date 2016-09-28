@@ -27,6 +27,9 @@ class ChatApp{
         };
         Object.assign(options, defaultOptions);
         new QrCode(ele, options);
+        setTimeout(()=>{
+            this.messageBox.style.display = 'block';
+        },360);
     }
 
     getUid(){
@@ -107,17 +110,19 @@ class ChatApp{
     }
 
     addActionPanelLinsteners(){
-        this.newChatBtn.bind('touchend click',()=>{
+        this.newChatBtn.bind('touchend click',(e)=>{
+            //console.log('click newChatBtn');
+            this.hideActionPanel();
             this.messageBox.innerHTML = '';
             let qrDiv = this.dom.createElement('div');
             let width = window.innerWidth;
+            let url = 'http://'+location.host+'/c/' + this.getUid();
             this.messageBox.appendChild(qrDiv);
-            this.showQrCode(qrDiv,{width:width/2,height:width/2,text:'http://'+location.host+'/c/' + this.getUid()});
+            this.showQrCode(qrDiv,{width:width/2,height:width/2,text:url});
+            e.stopPropagation();
             //console.log(location.href+this.socket.io.engine.id);
-            console.log('http://'+location.host+'/c/' + this.getUid());
-            console.log('click newChatBtn');
-            location.hash = 'messageBox'; 
-            this.hideActionPanel();
+            //console.log('http://'+location.host+'/c/' + this.getUid());
+            //location.hash = 'messageBox'; 
         });
         this.closeChatBtn.bind('touchend click',()=>{
             console.log('click closeChatBtn');
@@ -131,7 +136,7 @@ class ChatApp{
             console.log('click leftIconBtn');
             this.hideActionPanel();
         });
-        this.messageBox.bind('touchend click',()=>{
+        this.messageBox.bind('click',()=>{
             this.hideMessageBox();
         });
     }
