@@ -1,3 +1,5 @@
+import QrCode from './qrcode.js';
+
 class ChatApp{
     constructor(dom,socket,room){
         this.dom = dom;
@@ -12,6 +14,19 @@ class ChatApp{
         this.closeChatBtn = dom.getElementsByClassName('closeChat')[0];
         this.aboutUsBtn = dom.getElementsByClassName('aboutUs')[0];
         this.leftIconBtn = dom.getElementsByClassName('leftIcon')[0];
+        this.messageBox = dom.getElementById("messageBox");
+    }
+
+    showQrCode(ele, options){
+        let defaultOptions = {
+            width: 268,
+            height: 268,
+            colorDark : "#288344",
+            colorLight : "#ffffff",
+            correctLevel : QrCode.CorrectLevel.H
+        };
+        Object.assign(options, defaultOptions);
+        new QrCode(ele, options);
     }
 
     getUid(){
@@ -65,6 +80,10 @@ class ChatApp{
         //this.chatInput.blur();
     }
 
+    hideMessageBox(){
+        this.messageBox.style.display='none';
+    }
+
     sendLeave(){
         this.socket.emit('user unload', this.room, {user:localStorage.getItem('userId')});
     }
@@ -89,6 +108,11 @@ class ChatApp{
 
     addActionPanelLinsteners(){
         this.newChatBtn.bind('touchend click',()=>{
+            this.messageBox.innerHTML = '';
+            let qrDiv = this.dom.createElement('div');
+            let width = window.innerWidth;
+            this.messageBox.appendChild(qrDiv);
+            this.showQrCode(qrDiv,{width:width/2,height:width/2,text:'http://'+location.host+'/c/' + this.getUid()});
             //console.log(location.href+this.socket.io.engine.id);
             console.log('http://'+location.host+'/c/' + this.getUid());
             console.log('click newChatBtn');
@@ -106,6 +130,9 @@ class ChatApp{
         this.leftIconBtn.bind('touchend click',()=>{
             console.log('click leftIconBtn');
             this.hideActionPanel();
+        });
+        this.messageBox.bind('touchend click',()=>{
+            this.hideMessageBox();
         });
     }
 

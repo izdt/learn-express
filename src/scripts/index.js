@@ -1,10 +1,8 @@
 import ChatApp from './chat';
 import io from '../../node_modules/socket.io-client';
-import QrCode from './qrcode.js';
 
 (function (io, document, window, undefined) {
     const socket = io("/chat");
-    console.log(QrCode);
     //NOTES: arrow function ()=>{} this will be fixed.
     //function expression use a dynamic this 
     //Object prototype shouldn't use arrow function
@@ -21,6 +19,7 @@ import QrCode from './qrcode.js';
 
     window.onload = (e) => {
         let room = location.pathname.substring(location.pathname.lastIndexOf('/')+1);
+        // new QrCode(document.getElementById("messageBox"), "http://www.baidu.com");
         const chatApp = new ChatApp(document, socket, room);
         chatApp.addSocketListeners();
         chatApp.addInputListeners();
