@@ -377,10 +377,10 @@ var QRCode;
             var _elImage = this._elImage;
             var _oContext = this._oContext;
             var _htOption = this._htOption;
-            
+            var padding = 10;
 			var nCount = oQRCode.getModuleCount();
-			var nWidth = _htOption.width / nCount;
-			var nHeight = _htOption.height / nCount;
+			var nWidth = (_htOption.width - 2*padding) / nCount;
+			var nHeight = (_htOption.height - 2*padding) / nCount;
 			var nRoundedWidth = Math.round(nWidth);
 			var nRoundedHeight = Math.round(nHeight);
 
@@ -390,8 +390,8 @@ var QRCode;
 			for (var row = 0; row < nCount; row++) {
 				for (var col = 0; col < nCount; col++) {
 					var bIsDark = oQRCode.isDark(row, col);
-					var nLeft = col * nWidth;
-					var nTop = row * nHeight;
+					var nLeft = col * nWidth+padding;
+					var nTop = row * nHeight+padding;
 					_oContext.strokeStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;
 					_oContext.lineWidth = 1;
 					_oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;					
