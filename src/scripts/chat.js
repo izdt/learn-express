@@ -21,6 +21,7 @@ class ChatApp{
         let defaultOptions = {
             width: 268,
             height: 268,
+            padding: 20,
             colorDark : "#288344",
             colorLight : "#ffffff",
             correctLevel : QrCode.CorrectLevel.H

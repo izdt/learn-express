@@ -377,7 +377,7 @@ var QRCode;
             var _elImage = this._elImage;
             var _oContext = this._oContext;
             var _htOption = this._htOption;
-            var padding = 10;
+            var padding = _htOption.padding;
 			var nCount = oQRCode.getModuleCount();
 			var nWidth = (_htOption.width - 2*padding) / nCount;
 			var nHeight = (_htOption.height - 2*padding) / nCount;
@@ -386,7 +386,11 @@ var QRCode;
 
 			_elImage.style.display = "none";
 			this.clear();
-			
+
+			//fill padding
+			_oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;	
+			_oContext.fillRect(0,0,_htOption.width,_htOption.height);
+
 			for (var row = 0; row < nCount; row++) {
 				for (var col = 0; col < nCount; col++) {
 					var bIsDark = oQRCode.isDark(row, col);
@@ -536,6 +540,7 @@ var QRCode;
 		this._htOption = {
 			width : 256, 
 			height : 256,
+			padding : 20, 
 			typeNumber : 4,
 			colorDark : "#000000",
 			colorLight : "#ffffff",
