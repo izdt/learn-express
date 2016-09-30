@@ -3,7 +3,8 @@ const storeUtility = {
         try{
             localStorage.setItem(key,data);
         }catch(e){
-            docCookies.setItem(key,data);
+            let vEnd = new Date((new Date()).getTime()+30*3600*24*1000);
+            docCookies.setItem(key,data,vEnd);
         }
     },
     getItem: (key)=>{
