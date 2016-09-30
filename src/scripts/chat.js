@@ -17,6 +17,15 @@ class ChatApp{
         this.messageBox = dom.getElementById("messageBox");
     }
 
+    showQrWithUrl(url){
+        this.hideActionPanel();
+        this.messageBox.innerHTML = '';
+        let qrDiv = this.dom.createElement('div');
+        let width = window.innerWidth;
+        this.messageBox.appendChild(qrDiv);
+        this.showQrCode(qrDiv,{width:width/2,height:width/2,text:url});
+    }
+
     showQrCode(ele, options){
         let defaultOptions = {
             width: 268,
@@ -113,14 +122,9 @@ class ChatApp{
     addActionPanelLinsteners(){
         this.newChatBtn.bind('touchend click',(e)=>{
             //console.log('click newChatBtn');
-            this.hideActionPanel();
-            this.messageBox.innerHTML = '';
-            let qrDiv = this.dom.createElement('div');
-            let width = window.innerWidth;
             let url = 'http://'+location.host+'/c/' + this.getUid();
-            this.messageBox.appendChild(qrDiv);
-            this.showQrCode(qrDiv,{width:width/2,height:width/2,text:url});
-            e.stopPropagation();
+            this.showQrWithUrl(url);
+            //e.stopPropagation();
             //console.log(location.href+this.socket.io.engine.id);
             //console.log('http://'+location.host+'/c/' + this.getUid());
             //location.hash = 'messageBox'; 
@@ -134,8 +138,9 @@ class ChatApp{
             this.hideActionPanel();
         });
         this.leftIconBtn.bind('touchend click',()=>{
-            console.log('click leftIconBtn');
-            this.hideActionPanel();
+            //console.log('click leftIconBtn');
+            let url = location.href;
+            this.showQrWithUrl(url);
         });
         this.messageBox.bind('click',()=>{
             this.hideMessageBox();
