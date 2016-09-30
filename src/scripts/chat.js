@@ -1,4 +1,5 @@
-import QrCode from './qrcode.js';
+import QrCode from './qrcode';
+import localStore from './utility/storeUtility';
 
 class ChatApp{
     constructor(dom,socket,room){
@@ -68,11 +69,11 @@ class ChatApp{
         this.chatPanel.appendChild(rightMsgdiv);
         //this.inputPanel.scrollIntoView();
         this.scrollToMessage();
-        this.socket.emit('chat message', this.room, {msg:message,user:localStorage.getItem('userId')});
+        this.socket.emit('chat message', this.room, {msg:message,user:localStore.getItem('userId')});
     }
 
     receiveMessage(message){
-        //if(messageObj.user==localStorage.getItem('userId')) return;
+        //if(messageObj.user==localStore.getItem('userId')) return;
         let msg = this.htmlspecialchars(message.msg);
         let leftMsgdiv = this.dom.createElement('div');
         leftMsgdiv.className = "messageLeft";
@@ -98,7 +99,7 @@ class ChatApp{
     }
 
     sendLeave(){
-        this.socket.emit('user unload', this.room, {user:localStorage.getItem('userId')});
+        this.socket.emit('user unload', this.room, {user:localStore.getItem('userId')});
     }
 
     addSocketListeners(){
@@ -106,8 +107,8 @@ class ChatApp{
         this.socket.on('connect',()=>{
             this.socket.emit('join room', this.room);
             console.log("Connected! "+ this.socket.io.engine.id);
-            if(!localStorage.getItem('userId'))
-            localStorage.setItem('userId', this.socket.io.engine.id);
+            if(!localStore.getItem('userId'))
+            localStore.setItem('userId', this.socket.io.engine.id);
         });
         this.socket.on('chat message',(message)=>{
            this.receiveMessage(message);
