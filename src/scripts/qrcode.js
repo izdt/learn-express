@@ -418,11 +418,19 @@ var QRCode;
 				}
 			}
 			
-			// Fill Logo
+			// Fill Logo 
 			var logoWidth = 50;
 			if(_htOption.width - 2*padding > logoWidth*3 && _htOption.height - 2*padding > logoWidth*3){
 				_oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;	
-				_oContext.fillRect((_htOption.width-logoWidth)/2,(_htOption.height-logoWidth)/2,logoWidth,logoWidth);
+				var left = (_htOption.width-logoWidth)/2;
+				var right = (_htOption.height-logoWidth)/2;
+				_oContext.fillRect(left,right,logoWidth,logoWidth);
+				//see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
+				var drawing = new Image();
+				drawing.src = "/static/images/chat.png";
+				drawing.onload = function() {
+					_oContext.drawImage(drawing,left,right);
+				};
 			}
 
 			this._bIsPainted = true;
