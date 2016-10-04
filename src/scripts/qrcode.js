@@ -378,6 +378,7 @@ var QRCode;
             var _oContext = this._oContext;
             var _htOption = this._htOption;
             var padding = _htOption.padding;
+			var logo = _htOption.logo;
 			var nCount = oQRCode.getModuleCount();
 			var nWidth = (_htOption.width - 2*padding) / nCount;
 			var nHeight = (_htOption.height - 2*padding) / nCount;
@@ -420,14 +421,14 @@ var QRCode;
 			
 			// Fill Logo 
 			var logoWidth = 50;
-			if(_htOption.width - 2*padding > logoWidth*3 && _htOption.height - 2*padding > logoWidth*3){
+			if(logo&&_htOption.width - 2*padding > logoWidth*3 && _htOption.height - 2*padding > logoWidth*3){
 				_oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;	
 				var left = (_htOption.width-logoWidth)/2;
 				var right = (_htOption.height-logoWidth)/2;
 				_oContext.fillRect(left,right,logoWidth,logoWidth);
 				//see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
 				var img = new Image();
-				img.src = "/static/images/chat.png";
+				img.src = logo;//"/static/images/chat.png";
 				img.onload = function() {
 					_oContext.drawImage(img,left+3,right+3,logoWidth-6,logoWidth-6);
 				};
