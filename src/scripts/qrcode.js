@@ -426,10 +426,10 @@ var QRCode;
 				var right = (_htOption.height-logoWidth)/2;
 				_oContext.fillRect(left,right,logoWidth,logoWidth);
 				//see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
-				var drawing = new Image();
-				drawing.src = "/static/images/chat.png";
-				drawing.onload = function() {
-					_oContext.drawImage(drawing,left,right);
+				var img = new Image();
+				img.src = "/static/images/chat.png";
+				img.onload = function() {
+					_oContext.drawImage(img,left+3,right+3,logoWidth-6,logoWidth-6);
 				};
 			}
 
