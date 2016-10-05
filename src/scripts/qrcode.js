@@ -428,7 +428,7 @@ var QRCode;
 				_oContext.fillRect(left,right,logoWidth,logoWidth);
 				//see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
 				var img = new Image();
-				img.src = logo;//"/static/images/chat.png";
+				img.src = logo;
 				img.onload = function() {
 					_oContext.drawImage(img,left+3,right+3,logoWidth-6,logoWidth-6);
 				};

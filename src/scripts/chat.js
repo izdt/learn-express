@@ -34,6 +34,7 @@ class ChatApp{
             padding: 20,
             colorDark : "#288344",
             colorLight : "#ffffff",
+            logo: "/static/images/chat.png",
             correctLevel : QrCode.CorrectLevel.H
         };
         Object.assign(options, defaultOptions);
