@@ -389,7 +389,7 @@ var QRCode;
 			this.clear();
 
 			//fill padding
-			_oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;	
+			_oContext.fillStyle =  _htOption.colorLight;	
 			_oContext.fillRect(0,0,_htOption.width,_htOption.height);
 
 			for (var row = 0; row < nCount; row++) {
@@ -422,7 +422,7 @@ var QRCode;
 			// Fill Logo 
 			var logoWidth = 50;
 			if(logo&&_htOption.width - 2*padding > logoWidth*3 && _htOption.height - 2*padding > logoWidth*3){
-				_oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;	
+				_oContext.fillStyle =  _htOption.colorLight;	
 				var left = (_htOption.width-logoWidth)/2;
 				var right = (_htOption.height-logoWidth)/2;
 				_oContext.fillRect(left,right,logoWidth,logoWidth);
