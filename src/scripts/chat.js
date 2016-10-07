@@ -27,6 +27,13 @@ class ChatApp{
         this.showQrCode(qrDiv,{width:width/2,height:width/2,text:url});
     }
 
+    showQuitModal(){
+        this.hideActionPanel();
+        this.messageBox.innerHTML = '';
+        let modalDiv = this.dmo.createElement('div');
+        this.messageBox.appendChild(modalDiv);
+    }
+
     showQrCode(ele, options){
         let defaultOptions = {
             width: 268,
@@ -132,8 +139,8 @@ class ChatApp{
             //location.hash = 'messageBox'; 
         });
         this.closeChatBtn.bind('touchend click',()=>{
+            this.showQuitModal();
             console.log('click closeChatBtn');
-            this.hideActionPanel();
         });
         this.aboutUsBtn.bind('touchend click',()=>{
             console.log('click aboutUsBtn');
