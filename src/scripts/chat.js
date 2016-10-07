@@ -30,8 +30,11 @@ class ChatApp{
     showQuitModal(){
         this.hideActionPanel();
         this.messageBox.innerHTML = '';
-        let modalDiv = this.dmo.createElement('div');
+        let modalDiv = this.dom.createElement('div');
         this.messageBox.appendChild(modalDiv);
+        setTimeout(()=>{
+            this.messageBox.style.display = 'block';
+        },360);
     }
 
     showQrCode(ele, options){
