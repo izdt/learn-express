@@ -387,6 +387,13 @@ var QRCode;
 
 			_elImage.style.display = "none";
 			this.clear();
+			
+			//load image before draw QrCode
+			var img;
+			if(logo){
+				img = new Image();
+				img.src = logo;
+			}
 
 			//fill padding
 			_oContext.fillStyle =  _htOption.colorLight;	
@@ -425,15 +432,12 @@ var QRCode;
 				_oContext.fillStyle =  _htOption.colorLight;	
 				var left = (_htOption.width-logoWidth)/2;
 				var right = (_htOption.height-logoWidth)/2;
-				_oContext.fillRect(left,right,logoWidth,logoWidth);
 				//see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
-				var img = new Image();
-				img.src = logo;
-				img.onload = function() {
+				if(img.complete){
+					_oContext.fillRect(left,right,logoWidth,logoWidth);
 					_oContext.drawImage(img,left+3,right+3,logoWidth-6,logoWidth-6);
-				};
+				}
 			}
-
 			this._bIsPainted = true;
 		};
 			
