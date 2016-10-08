@@ -362,7 +362,7 @@ var QRCode;
 			this._oContext = this._elCanvas.getContext("2d");
 			this._bIsPainted = false;
 			this._elImage = document.createElement("img");
-			this._elImage.alt = "Scan me!";
+			//this._elImage.alt = "Scan me!";
 			this._elImage.style.display = "none";
 			this._el.appendChild(this._elImage);
 			this._bSupportDataURI = null;
@@ -387,13 +387,6 @@ var QRCode;
 
 			_elImage.style.display = "none";
 			this.clear();
-			
-			//load image before draw QrCode
-			var img;
-			if(logo){
-				img = new Image();
-				img.src = logo;
-			}
 
 			//fill padding
 			_oContext.fillStyle =  _htOption.colorLight;	
@@ -433,11 +426,16 @@ var QRCode;
 				var left = (_htOption.width-logoWidth)/2;
 				var right = (_htOption.height-logoWidth)/2;
 				//see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
-				if(img.complete){
+							//load image before draw QrCode
+				var img = new Image();
+				img.src = logo;
+				var _this = this;
+				img.onload = function(){
 					_oContext.fillRect(left,right,logoWidth,logoWidth);
 					_oContext.drawImage(img,left+3,right+3,logoWidth-6,logoWidth-6);
-				}
-			}
+					_this._bIsPainted = true;
+				};
+			}else
 			this._bIsPainted = true;
 		};
 			
