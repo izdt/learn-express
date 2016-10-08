@@ -286,3 +286,11 @@ i.aboutUs{
 #messageBox>div>img{
     display: inline-block !important;
 }
+
+.quitModal {
+    background: #ffffff;
+    border: 1px solid #9e9e9e;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 1px 1px 1px #ccc;
+}

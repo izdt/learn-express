@@ -31,6 +31,8 @@ class ChatApp{
         this.hideActionPanel();
         this.messageBox.innerHTML = '';
         let modalDiv = this.dom.createElement('div');
+        modalDiv.className = "quitModal";
+        modalDiv.innerHTML = '<div>确定要退出讨论群组?</div>';
         this.messageBox.appendChild(modalDiv);
         setTimeout(()=>{
             this.messageBox.style.display = 'block';
