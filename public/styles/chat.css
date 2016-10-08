@@ -294,3 +294,14 @@ i.aboutUs{
     margin: 20px;
     box-shadow: 1px 1px 1px #ccc;
 }
+
+.btnGroup {
+    margin-top: 20px;
+}
+
+span.btn {
+    border: 1px dashed #9a9a9a;
+    margin: 0 10px;
+    padding: 2px 15px;
+    font-size: .9rem;
+}

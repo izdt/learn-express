@@ -32,7 +32,7 @@ class ChatApp{
         this.messageBox.innerHTML = '';
         let modalDiv = this.dom.createElement('div');
         modalDiv.className = "quitModal";
-        modalDiv.innerHTML = '<div>确定要退出讨论群组?</div>';
+        modalDiv.innerHTML = '<div>确定要退出讨论群组?<div class="btnGroup"><span class="btn">确定</span><span class="btn">取消</span></div></div>';
         this.messageBox.appendChild(modalDiv);
         setTimeout(()=>{
             this.messageBox.style.display = 'block';
