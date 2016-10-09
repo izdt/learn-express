@@ -27,6 +27,10 @@ class ChatApp{
         this.showQrCode(qrDiv,{width:width/2,height:width/2,text:url});
     }
 
+    quitChat(){
+        location.href = '/';
+    }
+
     showQuitModal(){
         this.hideActionPanel();
         this.messageBox.innerHTML = '';
@@ -36,6 +40,9 @@ class ChatApp{
         this.messageBox.appendChild(modalDiv);
         setTimeout(()=>{
             this.messageBox.style.display = 'block';
+            modalDiv.getElementsByClassName('btn')[0].bind('click',()=>{
+                this.quitChat();
+            });
         },360);
     }
 
