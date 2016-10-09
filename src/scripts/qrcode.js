@@ -281,7 +281,7 @@ var QRCode;
 		
 		// Android 2.1 bug workaround
 		// http://code.google.com/p/android/issues/detail?id=5141
-		if (window._android && window._android <= 2.1) {
+		if (this && this._android && this._android <= 2.1) {
 	    	var factor = 1 / window.devicePixelRatio;
 	        var drawImage = CanvasRenderingContext2D.prototype.drawImage; 
 	    	CanvasRenderingContext2D.prototype.drawImage = function (image, sx, sy, sw, sh, dx, dy, dw, dh) {
@@ -362,7 +362,7 @@ var QRCode;
 			this._oContext = this._elCanvas.getContext("2d");
 			this._bIsPainted = false;
 			this._elImage = document.createElement("img");
-			//this._elImage.alt = "Scan me!";
+			this._elImage.alt = "Scan me!";
 			this._elImage.style.display = "none";
 			this._el.appendChild(this._elImage);
 			this._bSupportDataURI = null;
@@ -428,15 +428,18 @@ var QRCode;
 				//see https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
 							//load image before draw QrCode
 				var img = new Image();
-				img.src = logo;
 				var _this = this;
 				img.onload = function(){
 					_oContext.fillRect(left,right,logoWidth,logoWidth);
 					_oContext.drawImage(img,left+3,right+3,logoWidth-6,logoWidth-6);
 					_this._bIsPainted = true;
+					_this.makeImage();
 				};
-			}else
-			this._bIsPainted = true;
+				img.src = logo;
+			}else{
+				this._bIsPainted = true;
+				this.makeImage();
+			}
 		};
 			
 		/**
@@ -585,7 +588,7 @@ var QRCode;
 		if (this._htOption.useSVG) {
 			Drawing = svgDrawer;
 		}
-		
+
 		this._android = _getAndroid();
 		this._el = el;
 		this._oQRCode = null;
@@ -594,6 +597,7 @@ var QRCode;
 		if (this._htOption.text) {
 			this.makeCode(this._htOption.text);	
 		}
+
 	};
 	
 	/**
@@ -607,7 +611,7 @@ var QRCode;
 		this._oQRCode.make();
 		this._el.title = sText;
 		this._oDrawing.draw(this._oQRCode);			
-		this.makeImage();
+		//this.makeImage();
 	};
 	
 	/**
