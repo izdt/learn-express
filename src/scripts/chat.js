@@ -1,5 +1,6 @@
 import QrCode from './qrcode';
 import localStore from './utility/storeUtility';
+import chatUtility from './utility/chatUtility';
 
 class ChatApp{
     constructor(dom,socket,room){
@@ -63,38 +64,25 @@ class ChatApp{
         },360);
     }
 
-    getUid(){
-        return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
-    }
-
-    htmlspecialchars(str){    
-        str = str.replace(/&/g, '&amp;');  
-        str = str.replace(/</g, '&lt;');  
-        str = str.replace(/>/g, '&gt;');  
-        str = str.replace(/"/g, '&quot;');  
-        str = str.replace(/'/g, '&#039;');  
-        return str;  
-    }
-
     scrollToMessage(){
         this.chatPanel.querySelector('.chatPanel>div:last-child').scrollIntoView();
     }
 
     sendMessage(message){
-        let msg = this.htmlspecialchars(message);
+        let msg = chatUtility.htmlspecialchars(message);
         let rightMsgdiv = this.dom.createElement('div');
         rightMsgdiv.className = "messageRight";
         rightMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
-                        +message+'</div>';
+                        +msg+'</div>';
         this.chatPanel.appendChild(rightMsgdiv);
         //this.inputPanel.scrollIntoView();
         this.scrollToMessage();
-        this.socket.emit('chat message', this.room, {msg:message,user:localStore.getItem('userId')});
+        this.socket.emit('chat message', this.room, {msg:msg,user:localStore.getItem('userId')});
     }
 
     receiveMessage(message){
         //if(messageObj.user==localStore.getItem('userId')) return;
-        let msg = this.htmlspecialchars(message.msg);
+        let msg = chatUtility.htmlspecialchars(message.msg);
         let leftMsgdiv = this.dom.createElement('div');
         leftMsgdiv.className = "messageLeft";
         leftMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
@@ -143,7 +131,7 @@ class ChatApp{
     addActionPanelLinsteners(){
         this.newChatBtn.bind('touchend click',(e)=>{
             //console.log('click newChatBtn');
-            let url = 'http://'+location.host+'/c/' + this.getUid();
+            let url = 'http://'+location.host+'/c/' + chatUtility.getUid();
             this.showQrWithUrl(url);
             //e.stopPropagation();
             //console.log(location.href+this.socket.io.engine.id);
