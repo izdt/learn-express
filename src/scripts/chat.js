@@ -24,6 +24,7 @@ class ChatApp{
         this.messageBox.innerHTML = '';
         let qrDiv = this.dom.createElement('div');
         let width = window.innerWidth;
+        qrDiv.innerHTML = "<div>长按保存后分享此二维码</div>";
         this.messageBox.appendChild(qrDiv);
         this.showQrCode(qrDiv,{width:width/2,height:width/2,text:url});
     }
