@@ -1,3 +1,4 @@
+import randomcolor from '../../../node_modules/randomcolor/randomColor';
 const chatUtility = {
     
     getUid: ()=>{
@@ -8,6 +9,10 @@ const chatUtility = {
         return '#'+(Math.random()*0xffffff<<0).toString(16);
     },
 
+    getRandomColorWithLib: ()=>{
+        
+    },
+
     htmlspecialchars: (str)=>{    
         str = str.replace(/&/g, '&amp;');  
         str = str.replace(/</g, '&lt;');  
@@ -16,6 +21,6 @@ const chatUtility = {
         str = str.replace(/'/g, '&#039;');  
         return str;  
     }
-};
+}; 
 
 export default chatUtility;
