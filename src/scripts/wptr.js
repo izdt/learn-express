@@ -211,3 +211,5 @@ var WebPullToRefresh = (function () {
 	}
 
 })();
+
+export default WebPullToRefresh;
