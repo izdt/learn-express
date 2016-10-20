@@ -144,6 +144,8 @@ class ChatApp{
             console.log('click closeChatBtn');
         });
         this.aboutUsBtn.bind('touchend click',()=>{
+            console.log(chatUtility.getRandomColorWithLib());
+            console.log('%c'+chatUtility.getRandomColorWithLib(), 'background:'+chatUtility.getRandomColorWithLib()+'; color: #fff');
             console.log('click aboutUsBtn');
             this.hideActionPanel();
         });

@@ -10,7 +10,7 @@ const chatUtility = {
     },
 
     getRandomColorWithLib: ()=>{
-        
+        return randomcolor();
     },
 
     htmlspecialchars: (str)=>{    
