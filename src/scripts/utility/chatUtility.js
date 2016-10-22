@@ -5,12 +5,14 @@ const chatUtility = {
         return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
     },
 
-    getRandomColor: ()=>{
+    getSimpleRandomColor: ()=>{
         return '#'+(Math.random()*0xffffff<<0).toString(16);
     },
 
-    getRandomColorWithLib: ()=>{
-        return randomcolor();
+    getRandomColor: ()=>{
+        return randomcolor({
+            luminosity: 'dark'
+        });
     },
 
     htmlspecialchars: (str)=>{    
