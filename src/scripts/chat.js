@@ -17,6 +17,7 @@ class ChatApp{
         this.aboutUsBtn = dom.getElementsByClassName('aboutUs')[0];
         this.leftIconBtn = dom.getElementsByClassName('leftIcon')[0];
         this.messageBox = dom.getElementById("messageBox");
+        this.avatarColor = chatUtility.getRandomColor();
     }
 
     showQrWithUrl(url){
@@ -73,20 +74,21 @@ class ChatApp{
         let msg = chatUtility.htmlspecialchars(message);
         let rightMsgdiv = this.dom.createElement('div');
         rightMsgdiv.className = "messageRight";
-        rightMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
+        rightMsgdiv.innerHTML = '<div class="avatar" style="background-color:'+this.avatarColor+';"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +msg+'</div>';
         this.chatPanel.appendChild(rightMsgdiv);
         //this.inputPanel.scrollIntoView();
         this.scrollToMessage();
-        this.socket.emit('chat message', this.room, {msg:msg,user:localStore.getItem('userId')});
+        this.socket.emit('chat message', this.room, {msg:msg, user:localStore.getItem('userId'), avatarColor:this.avatarColor});
     }
 
     receiveMessage(message){
         //if(messageObj.user==localStore.getItem('userId')) return;
         let msg = chatUtility.htmlspecialchars(message.msg);
+        let color = message.avatarColor;
         let leftMsgdiv = this.dom.createElement('div');
         leftMsgdiv.className = "messageLeft";
-        leftMsgdiv.innerHTML = '<div class="avatar"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
+        leftMsgdiv.innerHTML = '<div class="avatar" style="background-color:'+color+';"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +msg+'</div>';
         this.chatPanel.appendChild(leftMsgdiv);
         //this.inputPanel.scrollIntoView();
@@ -144,8 +146,7 @@ class ChatApp{
             console.log('click closeChatBtn');
         });
         this.aboutUsBtn.bind('touchend click',()=>{
-            console.log(chatUtility.getRandomColorWithLib());
-            console.log('%c'+chatUtility.getRandomColorWithLib(), 'background:'+chatUtility.getRandomColorWithLib()+'; color: #fff');
+            console.log('%c'+chatUtility.getRandomColor(), 'background:'+chatUtility.getRandomColor()+'; color: #fff');
             console.log('click aboutUsBtn');
             this.hideActionPanel();
         });
