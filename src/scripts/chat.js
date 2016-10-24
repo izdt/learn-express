@@ -1,4 +1,6 @@
-import QrCode from './qrcode';
+import QrCode from './utility/qrcode';
+import WebPullToRefresh from './utility/wptr';
+import hammer from '../../node_modules/hammerjs/hammer';
 import localStore from './utility/storeUtility';
 import chatUtility from './utility/chatUtility';
 
@@ -64,6 +66,24 @@ class ChatApp{
         setTimeout(()=>{
             this.messageBox.style.display = 'block';
         },360);
+    }
+
+    initPullRefresh(){
+         WebPullToRefresh.init( {
+            loadingFunction: this.refreshToLoad
+        } );    
+    }
+
+    refreshToLoad(){
+        return new Promise( function( resolve, reject ) {
+            // Run some async loading code here
+            if (true /* if the loading worked */ ) {
+                console.log("refresh");
+                resolve();
+            } else {
+                reject();
+            }
+        } );
     }
 
     scrollToMessage(){
