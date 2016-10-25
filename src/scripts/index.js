@@ -24,5 +24,6 @@ import io from '../../node_modules/socket.io-client';
         chatApp.addSocketListeners();
         chatApp.addInputListeners();
         chatApp.addActionPanelLinsteners();
+        chatApp.initPullRefresh();
     };
 })(io, document, window);
