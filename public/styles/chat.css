@@ -310,3 +310,13 @@ span.btn:hover{
     background: #e4e6e6;
     border: 1px solid #ccc;
 }
+
+.loading {
+    font-size: 0.8rem;
+    text-align:center;
+    padding:10px;
+    display:none;
+}
+.ptr-refresh .loading{
+    display:block;
+}
