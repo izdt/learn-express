@@ -25,8 +25,9 @@ body{
     overflow-x: hidden;
     padding-bottom: 50px;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    box-sizing: border-box;
-    height: 100%;
+    /*Remove Box-sizing for fast slide*/
+    /* box-sizing: border-box; */
+    /* height: 100%; */
 }
 
 .timeBlock {
@@ -281,7 +282,7 @@ i.aboutUs{
 }
 #messageBox>div{
     text-align:center;
-    margin-top:100px;
+    margin-top: 80px;
 }
 #messageBox>div>img{
     display: inline-block !important;
