@@ -122,6 +122,10 @@ body{
     background-color: #28ab10;
 }
 
+.msg{
+    word-break: break-word;
+}
+
 .inputPanel {
     width: 100%;
     position: fixed;

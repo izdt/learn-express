@@ -19,7 +19,6 @@ import io from '../../node_modules/socket.io-client';
 
     window.onload = (e) => {
         let room = location.pathname.substring(location.pathname.lastIndexOf('/')+1);
-        // new QrCode(document.getElementById("messageBox"), "http://www.baidu.com");
         const chatApp = new ChatApp(document, socket, room);
         chatApp.addSocketListeners();
         chatApp.addInputListeners();
