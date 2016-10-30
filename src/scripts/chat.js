@@ -1,6 +1,6 @@
 import QrCode from './utility/qrcode';
-import WebPullToRefresh from './utility/wptr';
-import hammer from '../../node_modules/hammerjs/hammer';
+//import WebPullToRefresh from './utility/wptr';
+import pullRefresh from './utility/pullRefresh';
 import localStore from './utility/storeUtility';
 import chatUtility from './utility/chatUtility';
 
@@ -69,9 +69,10 @@ class ChatApp{
     }
 
     initPullRefresh(){
-         WebPullToRefresh.init( {
-            loadingFunction: this.refreshToLoad
-        } );    
+        pullRefresh.init(this.dom.getElementById("content"),this.dom.getElementById("ptr"));
+        //  WebPullToRefresh.init( {
+        //     loadingFunction: this.refreshToLoad
+        // } );    
     }
 
     refreshToLoad(){
