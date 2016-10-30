@@ -1,13 +1,11 @@
 import Hammer from '../../../node_modules/hammerjs/hammer';
-const pullRefresh={
-    
-    initHammer: function(){
+class PullRefresh{
+    constructor(contentEle,loadingEle){
 
-
-    },
-    init: function(contentEle,loadingEle){
+    }
+    initHammer(){
 
 
     }
-};
-export default pullRefresh;
+}
+export default PullRefresh;
