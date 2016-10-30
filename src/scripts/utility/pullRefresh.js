@@ -20,12 +20,15 @@ class PullRefresh{
             console.log(e);
         };
         let _panDown = function(e){
-            console.log("panDown");
-            console.log(e);
+            console.log(e.distance);
+            document.body.scrollTop+=e.distance;
+            // console.log("panDown");
+            // console.log(e);
         };
         let _panUp = function(e){
-            console.log("panUp");
-            console.log(e);
+            document.body.scrollTo-=e.distance;
+            // console.log("panUp");
+            // console.log(e);
         };
         let _panEnd = function(e){
             console.log("panEnd");
