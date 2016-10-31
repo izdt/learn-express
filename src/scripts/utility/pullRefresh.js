@@ -9,7 +9,9 @@ class PullRefresh{
         if ( ! this.contentEle || ! this.loadingEle ) {
 			return false;
 		}
-        let options = {};
+        let options = {
+            resistance: 5
+        };
         let pan = {
             enabled: false,
             distance: 0,
@@ -22,11 +24,11 @@ class PullRefresh{
             //console.log(e);
         } );
 		h.on( 'pandown', (e)=>{
-            console.log(e.distance);
-            this.contentEle.scrollTop-=e.distance;
+            //console.log(e.distance);
+            this.contentEle.scrollTop-=e.distance/options.resistance;
         } );
 		h.on( 'panup', (e)=>{
-            this.contentEle.scrollTop+=e.distance;
+            this.contentEle.scrollTop+=e.distance/options.resistance;
         } );
 		h.on( 'panend', (e)=>{
             console.log("panEnd");
