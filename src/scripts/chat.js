@@ -69,10 +69,7 @@ class ChatApp{
     }
 
     initPullRefresh(){
-        pullRefresh.init(this.dom.getElementById("content"),this.dom.getElementById("ptr"));
-        //  WebPullToRefresh.init( {
-        //     loadingFunction: this.refreshToLoad
-        // } );    
+        pullRefresh.init(this.dom.getElementById("content"),this.dom.getElementById("ptr"),this.refreshToLoad);
     }
 
     refreshToLoad(){
