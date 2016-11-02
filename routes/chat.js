@@ -26,6 +26,12 @@ router.get('/messages/:uid/:num',(req,res)=>{
   });
 });
 
+router.get('/:room/messages/:num',(req,res)=>{
+  let room = req.params.room;
+  let index = (req.params.num-1)*20;
+  //TODO: get message from room
+});
+
 router.get('/:room',(req,res)=>{
   res.render('chat/chat',{title:'Chat App at '+req.params.room, room:req.params.room});
 });
