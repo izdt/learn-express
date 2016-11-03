@@ -11,8 +11,9 @@ const getMessages = function(uid,start,end){
 };
 
 const getRoomMessage = function(room,start,end){
-  return dblib.connect.then((conn)=>{
-    return dblib.queryWithFilter('chat',{room:room},start,end);
+  return dblib.connect()
+  .then((conn)=>{
+    return dblib.queryWithFilter('chat',{room:room},start,end,conn);
   });
 };
 
