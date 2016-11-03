@@ -10,6 +10,12 @@ const getMessages = function(uid,start,end){
   });
 };
 
+const getRoomMessage = function(room,start,end){
+  return dblib.connect.then((conn)=>{
+    return dblib.queryWithFilter('chat',{room:room},start,end);
+  });
+};
+
 router.get('/',(req,res)=>{
   res.render('chat/chat',{title:'Chat App'});
 });
@@ -29,7 +35,9 @@ router.get('/messages/:uid/:num',(req,res)=>{
 router.get('/:room/messages/:num',(req,res)=>{
   let room = req.params.room;
   let index = (req.params.num-1)*20;
-  //TODO: get message from room
+  getRoomMessage(room,index,20).then((result)=>{
+      res.send(JSON.stringify(result));
+  });
 });
 
 router.get('/:room',(req,res)=>{
