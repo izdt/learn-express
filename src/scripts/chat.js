@@ -69,19 +69,18 @@ class ChatApp{
     }
 
     initPullRefresh(){
-        pullRefresh.init(this.dom.getElementById("content"),this.dom.getElementById("ptr"),this.refreshToLoad);
-    }
+        let room = this.room;
+        let refreshToLoad = ()=>{
+            return fetch('/c/'+room+'/messages/1'/*,{method:'post'}*/)
+                   .then((response)=>{
+                        return response.json();
+                   })
+                   .then((data)=>{
+                       console.log(data);
+                   });
+        };
 
-    refreshToLoad(){
-        return new Promise( function( resolve, reject ) {
-            // Run some async loading code here
-            if (true /* if the loading worked */ ) {
-                console.log("refresh");
-                resolve();
-            } else {
-                reject();
-            }
-        } );
+        pullRefresh.init(this.dom.getElementById("content"),this.dom.getElementById("ptr"), refreshToLoad);
     }
 
     scrollToMessage(){
