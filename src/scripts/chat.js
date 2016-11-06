@@ -70,12 +70,15 @@ class ChatApp{
 
     initPullRefresh(){
         let room = this.room;
+        let currentNum = 1;
         let refreshToLoad = ()=>{
-            return fetch('/c/'+room+'/messages/1'/*,{method:'post'}*/)
+            return fetch('/c/'+room+'/messages/'+currentNum/*,{method:'post'}*/)
                    .then((response)=>{
                         return response.json();
                    })
                    .then((data)=>{
+                       console.log(currentNum);
+                       currentNum++;
                        console.log(data);
                    });
         };

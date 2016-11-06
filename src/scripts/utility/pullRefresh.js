@@ -75,9 +75,9 @@ class PullRefresh{
             if(pan.enabled){
                 this.contentEle.style.transform = this.contentEle.style.webkitTransform = '';
                 this.loadingEle.style.transform = this.loadingEle.style.webkitTransform = '';
-                if(pan.distance>options.distanceToRefresh){
-                    console.log("Do refresh");
-                }
+                // if(pan.distance>options.distanceToRefresh){
+                //     console.log("Do refresh");
+                // }
                 if ( this.parentClass.contains( 'ptr-refresh' ) ) _loading();
                 else _resetStyle();
             }
