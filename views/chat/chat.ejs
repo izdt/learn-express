@@ -19,13 +19,13 @@
             </div>
         </div>
         <div class="chatPanel" id="content">
-            <div class="timeBlock">今天
-                <%
+             <%
                 const now = new Date();
                 const hours = now.getHours()<10?"0"+now.getHours():now.getHours();
                 const minutes = now.getMinutes()<10?"0"+now.getMinutes():now.getMinutes();
                 const time = hours+":"+minutes;
-                %>
+            %>
+            <div class="timeBlock" data-time="<%=now.getTime() %>">今天
                 <%=time %></div>
             <div class="messageLeft">
                 <div class="avatar"></div>
