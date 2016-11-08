@@ -73,16 +73,26 @@ class ChatApp{
     initPullRefresh(){
         let room = this.room;
         let timeStamp = this.timeStamp;
+        let pullMessage = this.pullToGetMessages;
         let currentNum = 1;
+        let generateMsgDiv = this.generateMsgDiv;
+        let chatPanel = this.chatPanel;
+        let pullToGetMessages = (messages)=>{
+            messages.forEach((m)=> {
+                let msgDiv = generateMsgDiv(m.message);
+                chatPanel.insertBefore(msgDiv,chatPanel.children[0]);
+            });
+        };
         let refreshToLoad = ()=>{
             return fetch('/c/'+room+'/messages/'+currentNum+'/'+timeStamp/*,{method:'post'}*/)
                    .then((response)=>{
                         return response.json();
                    })
                    .then((data)=>{
-                       console.log(currentNum);
+                       //console.log(currentNum);
                        currentNum++;
-                       console.log(data);
+                       pullToGetMessages(data);
+                       //console.log(data);
                    })
                    .catch((e)=>{
                        console.log("Error "+e.message);
@@ -112,7 +122,7 @@ class ChatApp{
         //if(messageObj.user==localStore.getItem('userId')) return;
         let msg = chatUtility.htmlspecialchars(message.msg);
         let color = message.avatarColor;
-        let leftMsgdiv = this.dom.createElement('div');
+        let leftMsgdiv = (this?this.dom:document).createElement('div');
         leftMsgdiv.className = "messageLeft";
         leftMsgdiv.innerHTML = '<div class="avatar" style="background-color:'+color+';"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +msg+'</div>';
@@ -124,12 +134,6 @@ class ChatApp{
         this.chatPanel.appendChild(leftMsgdiv);
         //this.inputPanel.scrollIntoView();
         this.scrollToMessage();
-    }
-
-    pullToGetMessages(messages){
-        messages.forEach(function(message) {
-            
-        }, this);
     }
 
     toggleShowActionPanel(height){
