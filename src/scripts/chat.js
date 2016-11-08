@@ -9,6 +9,8 @@ class ChatApp{
         this.dom = dom;
         this.socket = socket; 
         this.room = room;
+        this.timeStamp = (new Date()).getTime();
+        //this.timeStamp = dom.getElementsByClassName('timeBlock')[0].dataset.time;
         this.chatInput = dom.getElementById('inputBox');
         this.inputPanel = dom.getElementsByClassName('inputPanel')[0];
         this.chatPanel = dom.getElementsByClassName('chatPanel')[0];
@@ -70,9 +72,10 @@ class ChatApp{
 
     initPullRefresh(){
         let room = this.room;
+        let timeStamp = this.timeStamp;
         let currentNum = 1;
         let refreshToLoad = ()=>{
-            return fetch('/c/'+room+'/messages/'+currentNum/*,{method:'post'}*/)
+            return fetch('/c/'+room+'/messages/'+currentNum+'/'+timeStamp/*,{method:'post'}*/)
                    .then((response)=>{
                         return response.json();
                    })
@@ -80,6 +83,9 @@ class ChatApp{
                        console.log(currentNum);
                        currentNum++;
                        console.log(data);
+                   })
+                   .catch((e)=>{
+                       console.log("Error "+e.message);
                    });
         };
 
@@ -102,7 +108,7 @@ class ChatApp{
         this.socket.emit('chat message', this.room, {msg:msg, user:localStore.getItem('userId'), avatarColor:this.avatarColor});
     }
 
-    receiveMessage(message){
+    generateMsgDiv(message){
         //if(messageObj.user==localStore.getItem('userId')) return;
         let msg = chatUtility.htmlspecialchars(message.msg);
         let color = message.avatarColor;
@@ -110,9 +116,20 @@ class ChatApp{
         leftMsgdiv.className = "messageLeft";
         leftMsgdiv.innerHTML = '<div class="avatar" style="background-color:'+color+';"></div>\r\n<div class="nick"></div>\r\n<div class="msgWrapper">\r\n<div class="msg">'
                         +msg+'</div>';
+        return leftMsgdiv;
+    }
+
+    receiveMessage(message){
+        let leftMsgdiv = this.generateMsgDiv(message);
         this.chatPanel.appendChild(leftMsgdiv);
         //this.inputPanel.scrollIntoView();
         this.scrollToMessage();
+    }
+
+    pullToGetMessages(messages){
+        messages.forEach(function(message) {
+            
+        }, this);
     }
 
     toggleShowActionPanel(height){
