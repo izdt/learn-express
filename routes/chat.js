@@ -10,10 +10,11 @@ const getMessages = function(uid,start,end){
   });
 };
 
-const getRoomMessage = function(room,start,end){
+const getRoomMessage = function(room,timestamp,start,end){
   return dblib.connect()
   .then((conn)=>{
-    return dblib.queryWithFilter('chat',{room:room},start,end,conn);
+    return dblib.queryWithFilter('chat',(c)=>{return c("date").lt(timestamp).and(c("room").eq(room));},start,end,conn);
+    //return dblib.queryWithFilter('chat',{room:room},start,end,conn);
   });
 };
 
@@ -33,10 +34,11 @@ router.get('/messages/:uid/:num',(req,res)=>{
   });
 });
 
-router.get('/:room/messages/:num',(req,res)=>{
+router.get('/:room/messages/:num/:timestamp',(req,res)=>{
   let room = req.params.room;
+  let timestamp = req.params.timestamp;
   let index = (req.params.num-1)*20;
-  getRoomMessage(room,index,20).then((result)=>{
+  getRoomMessage(room,timestamp,index,20).then((result)=>{
       res.send(JSON.stringify(result));
   });
 });
