@@ -13,7 +13,7 @@ const getMessages = function(uid,start,end){
 const getRoomMessage = function(room,timestamp,start,end){
   return dblib.connect()
   .then((conn)=>{
-    return dblib.queryWithFilter('chat',(c)=>{return c("date").lt(timestamp).and(c("room").eq(room));},start,end,conn);
+    return dblib.queryWithFilter('chat',(c)=>{return c('date').lt(timestamp).and(c('room').eq(room));},start,end,conn);
     //return dblib.queryWithFilter('chat',{room:room},start,end,conn);
   });
 };
