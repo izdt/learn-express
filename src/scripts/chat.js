@@ -21,6 +21,7 @@ class ChatApp{
         this.aboutUsBtn = dom.getElementsByClassName('aboutUs')[0];
         this.leftIconBtn = dom.getElementsByClassName('leftIcon')[0];
         this.messageBox = dom.getElementById("messageBox");
+        this.loadingDiv = dom.getElementsByClassName("loading")[0];
         this.avatarColor = chatUtility.getRandomColor();
     }
 
@@ -77,6 +78,7 @@ class ChatApp{
         let currentNum = 1;
         let generateMsgDiv = this.generateMsgDiv;
         let chatPanel = this.chatPanel;
+        let loadingDiv = this.loadingDiv;
         let pullToGetMessages = (messages)=>{
             messages.forEach((m)=> {
                 let msgDiv = generateMsgDiv(m.message);
@@ -90,8 +92,12 @@ class ChatApp{
                    })
                    .then((data)=>{
                        //console.log(currentNum);
-                       currentNum++;
-                       pullToGetMessages(data);
+                       if(data.length){
+                            currentNum++;
+                            pullToGetMessages(data);
+                       }else{
+                           loadingDiv.innerText = "所有消息已加载...";
+                       }
                        //console.log(data);
                    })
                    .catch((e)=>{
