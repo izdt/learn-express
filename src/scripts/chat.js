@@ -23,6 +23,7 @@ class ChatApp{
         this.messageBox = dom.getElementById("messageBox");
         this.loadingDiv = dom.getElementsByClassName("loading")[0];
         this.avatarColor = chatUtility.getRandomColor();
+        this.showHomeModal();
     }
 
     showQrWithUrl(url){
@@ -36,7 +37,7 @@ class ChatApp{
     }
 
     quitChat(){
-        location.href = '/';
+        location.href = '/c/';
     }
 
     showQuitModal(){
@@ -52,6 +53,13 @@ class ChatApp{
                 this.quitChat();
             });
         },360);
+    }
+
+    showHomeModal(){
+       if(location.pathname=="/c/"||location.pathname=="/c"){
+           let url = 'http://'+location.host+'/c/' + chatUtility.getUid();
+           this.showQrWithUrl(url);
+       }
     }
 
     showQrCode(ele, options){
