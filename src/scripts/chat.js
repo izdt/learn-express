@@ -26,12 +26,13 @@ class ChatApp{
         this.showHomeModal();
     }
 
-    showQrWithUrl(url){
+    showQrWithUrl(url, tip){
         this.hideActionPanel();
         this.messageBox.innerHTML = '';
         let qrDiv = this.dom.createElement('div');
         let width = window.innerWidth;
-        qrDiv.innerHTML = "<div>长按保存后分享此二维码</div>";
+        tip = tip ? tip:"长按扫描识别后进入聊天";
+        qrDiv.innerHTML = "<div>"+tip+"</div>";
         this.messageBox.appendChild(qrDiv);
         this.showQrCode(qrDiv,{width:width/2,height:width/2,text:url});
     }
@@ -208,7 +209,7 @@ class ChatApp{
         this.leftIconBtn.bind('touchend click',()=>{
             //console.log('click leftIconBtn');
             let url = location.href;
-            this.showQrWithUrl(url);
+            this.showQrWithUrl(url,"长按保存分享此二维码邀请好友");
         });
         this.messageBox.bind('click',()=>{
             this.hideMessageBox();
